@@ -1,0 +1,840 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gexf xmlns="http://gexf.net/1.3" version="1.3" xmlns:viz="http://gexf.net/1.3/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://gexf.net/1.3 http://gexf.net/1.3/gexf.xsd">
+  <meta lastmodifieddate="2023-09-24">
+    <creator>Gephi 0.10.1</creator>
+    <title></title>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <attributes class="node" mode="static">
+      <attribute id="type" title="type" type="string"/>
+    </attributes>
+    <attributes class="edge" mode="static">
+      <attribute id="mmnt-edgetype" title="MMNT-EdgeType" type="string"/>
+    </attributes>
+    <nodes>
+      <node id="GDF_SUEZ" label="GDF_SUEZ">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="390.00238" y="16.893137"/>
+      </node>
+      <node id="LVMH" label="LVMH">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-42.816204" y="164.3294"/>
+      </node>
+      <node id="SOCIETE_GENERALE" label="SOCIETE_GENERALE">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-139.00523" y="-125.11434"/>
+      </node>
+      <node id="CARREFOUR" label="CARREFOUR">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="273.85147" y="348.48068"/>
+      </node>
+      <node id="PUBLICIS" label="PUBLICIS">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="253.34291" y="215.4686"/>
+      </node>
+      <node id="AIRBUS" label="AIRBUS">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="349.3259" y="-314.00754"/>
+      </node>
+      <node id="TOTAL" label="TOTAL">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="117.99148" y="20.12605"/>
+      </node>
+      <node id="BOUYGUES" label="BOUYGUES">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="32.164864" y="-148.30229"/>
+      </node>
+      <node id="SAINT_GOBAIN" label="SAINT_GOBAIN">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="153.95065" y="-181.96288"/>
+      </node>
+      <node id="BNP_PARIBAS" label="BNP_PARIBAS">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="323.4256" y="-14.837313"/>
+      </node>
+      <node id="KERING" label="KERING">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="64.362076" y="110.1133"/>
+      </node>
+      <node id="LAFARGE" label="LAFARGE">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="265.20364" y="-197.5147"/>
+      </node>
+      <node id="VEOLIA_ENVIRONNEMENT" label="VEOLIA_ENVIRONNEMENT">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="129.3075" y="133.9866"/>
+      </node>
+      <node id="DANONE" label="DANONE">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-289.4686" y="705.85156"/>
+      </node>
+      <node id="AIR_LIQUIDE" label="AIR_LIQUIDE">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-165.57428" y="442.31616"/>
+      </node>
+      <node id="ESSILOR" label="ESSILOR">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-36.381058" y="972.3655"/>
+      </node>
+      <node id="EDF" label="EDF">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="121.85201" y="-422.2178"/>
+      </node>
+      <node id="ARCELORMITTAL" label="ARCELORMITTAL">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="388.53284" y="-546.21857"/>
+      </node>
+      <node id="RENAULT" label="RENAULT">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-198.5969" y="294.84488"/>
+      </node>
+      <node id="L_OREAL" label="L_OREAL">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-71.46168" y="614.0595"/>
+      </node>
+      <node id="ORANGE" label="ORANGE">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-472.3486" y="590.2254"/>
+      </node>
+      <node id="CAP_GEMINI" label="CAP_GEMINI">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-307.96368" y="-614.19586"/>
+      </node>
+      <node id="SCHNEIDER_ELECTRIC" label="SCHNEIDER_ELECTRIC">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-94.08744" y="768.7742"/>
+      </node>
+      <node id="TECHNIP" label="TECHNIP">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-125.91291" y="-465.96695"/>
+      </node>
+      <node id="ALSTOM" label="ALSTOM">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-191.33612" y="-226.12863"/>
+      </node>
+      <node id="LEGRAND" label="LEGRAND">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="445.07208" y="-145.39375"/>
+      </node>
+      <node id="VIVENDI" label="VIVENDI">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="20.321417" y="430.49448"/>
+      </node>
+      <node id="PERNOD_RICARD" label="PERNOD_RICARD">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="45.998592" y="-652.21893"/>
+      </node>
+      <node id="AXA" label="AXA">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-284.00208" y="-284.6612"/>
+      </node>
+      <node id="VINCI" label="VINCI">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-380.55783" y="92.7131"/>
+      </node>
+      <node id="ALCATEL-LUCENT" label="ALCATEL-LUCENT">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="427.94382" y="739.2294"/>
+      </node>
+      <node id="MICHELIN" label="MICHELIN">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="510.46158" y="-262.20294"/>
+      </node>
+      <node id="SOLVAY" label="SOLVAY">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-408.32123" y="-88.61565"/>
+      </node>
+      <node id="SANOFI" label="SANOFI">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-246.24825" y="103.9259"/>
+      </node>
+      <node id="CREDIT_AGRICOLE" label="CREDIT_AGRICOLE">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-521.57404" y="-978.21783"/>
+      </node>
+      <node id="GEMALTO" label="GEMALTO">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="300.11057" y="1101.8782"/>
+      </node>
+      <node id="ACCOR" label="ACCOR">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="190.10574" y="659.4108"/>
+      </node>
+      <node id="SAFRAN" label="SAFRAN">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="705.26294" y="23.528854"/>
+      </node>
+      <node id="UNIBAIL" label="UNIBAIL">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-810.6464" y="844.88715"/>
+      </node>
+      <node id="VALEO" label="VALEO">
+        <attvalues>
+          <attvalue for="type" value="COMPANY"/>
+        </attvalues>
+        <viz:size value="10.0"/>
+        <viz:position x="-42.297207" y="-91.04278"/>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="1641" source="GDF_SUEZ" target="LVMH" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1642" source="GDF_SUEZ" target="TOTAL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1643" source="GDF_SUEZ" target="SAINT_GOBAIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1644" source="GDF_SUEZ" target="LAFARGE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1645" source="GDF_SUEZ" target="LEGRAND" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1646" source="GDF_SUEZ" target="SAFRAN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1647" source="LVMH" target="CARREFOUR" label="COMPANY-COMPANY" weight="2.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1648" source="LVMH" target="PUBLICIS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1649" source="LVMH" target="RENAULT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1650" source="LVMH" target="VINCI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1651" source="LVMH" target="SOLVAY" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1652" source="SOCIETE_GENERALE" target="PUBLICIS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1653" source="SOCIETE_GENERALE" target="SAINT_GOBAIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1654" source="SOCIETE_GENERALE" target="VEOLIA_ENVIRONNEMENT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1655" source="SOCIETE_GENERALE" target="CAP_GEMINI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1656" source="SOCIETE_GENERALE" target="ALSTOM" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1657" source="SOCIETE_GENERALE" target="AXA" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1658" source="SOCIETE_GENERALE" target="VINCI" label="COMPANY-COMPANY" weight="2.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1659" source="SOCIETE_GENERALE" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1660" source="CARREFOUR" target="PUBLICIS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1661" source="CARREFOUR" target="BNP_PARIBAS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1662" source="CARREFOUR" target="VEOLIA_ENVIRONNEMENT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1663" source="CARREFOUR" target="ACCOR" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1664" source="PUBLICIS" target="BNP_PARIBAS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1665" source="PUBLICIS" target="LAFARGE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1666" source="PUBLICIS" target="ALCATEL-LUCENT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1667" source="AIRBUS" target="TOTAL" label="COMPANY-COMPANY" weight="2.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1668" source="AIRBUS" target="SAINT_GOBAIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1669" source="AIRBUS" target="BNP_PARIBAS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1670" source="AIRBUS" target="ARCELORMITTAL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1671" source="TOTAL" target="BOUYGUES" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1672" source="TOTAL" target="SAINT_GOBAIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1673" source="TOTAL" target="BNP_PARIBAS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1674" source="TOTAL" target="KERING" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1675" source="TOTAL" target="LAFARGE" label="COMPANY-COMPANY" weight="2.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1676" source="TOTAL" target="AIR_LIQUIDE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1677" source="TOTAL" target="RENAULT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1678" source="TOTAL" target="LEGRAND" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1679" source="TOTAL" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1680" source="BOUYGUES" target="SAINT_GOBAIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1681" source="BOUYGUES" target="BNP_PARIBAS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1682" source="BOUYGUES" target="KERING" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1683" source="BOUYGUES" target="EDF" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1684" source="BOUYGUES" target="ALSTOM" label="COMPANY-COMPANY" weight="2.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1685" source="BOUYGUES" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1686" source="SAINT_GOBAIN" target="BNP_PARIBAS" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1687" source="SAINT_GOBAIN" target="VEOLIA_ENVIRONNEMENT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1688" source="SAINT_GOBAIN" target="ALSTOM" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1689" source="SAINT_GOBAIN" target="LEGRAND" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1690" source="SAINT_GOBAIN" target="AXA" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1691" source="SAINT_GOBAIN" target="MICHELIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1692" source="BNP_PARIBAS" target="KERING" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1693" source="BNP_PARIBAS" target="LAFARGE" label="COMPANY-COMPANY" weight="2.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1694" source="BNP_PARIBAS" target="VEOLIA_ENVIRONNEMENT" label="COMPANY-COMPANY" weight="3.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1695" source="BNP_PARIBAS" target="MICHELIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1696" source="BNP_PARIBAS" target="SAFRAN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1697" source="KERING" target="LAFARGE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1698" source="KERING" target="VEOLIA_ENVIRONNEMENT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1699" source="KERING" target="RENAULT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1700" source="KERING" target="VIVENDI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1701" source="LAFARGE" target="VEOLIA_ENVIRONNEMENT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1702" source="LAFARGE" target="EDF" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1703" source="LAFARGE" target="ARCELORMITTAL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1704" source="LAFARGE" target="LEGRAND" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1705" source="LAFARGE" target="PERNOD_RICARD" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1706" source="LAFARGE" target="MICHELIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1707" source="VEOLIA_ENVIRONNEMENT" target="L_OREAL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1708" source="VEOLIA_ENVIRONNEMENT" target="VALEO" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1709" source="DANONE" target="AIR_LIQUIDE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1710" source="DANONE" target="ESSILOR" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1711" source="DANONE" target="RENAULT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1712" source="DANONE" target="ORANGE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1713" source="AIR_LIQUIDE" target="RENAULT" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1714" source="AIR_LIQUIDE" target="L_OREAL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1715" source="AIR_LIQUIDE" target="SCHNEIDER_ELECTRIC" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1716" source="AIR_LIQUIDE" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1717" source="ESSILOR" target="L_OREAL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1718" source="ESSILOR" target="SCHNEIDER_ELECTRIC" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1719" source="ESSILOR" target="GEMALTO" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1720" source="EDF" target="ARCELORMITTAL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1721" source="EDF" target="TECHNIP" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1722" source="EDF" target="VALEO" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1723" source="RENAULT" target="VINCI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1724" source="RENAULT" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1725" source="L_OREAL" target="ORANGE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1726" source="L_OREAL" target="SCHNEIDER_ELECTRIC" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1727" source="L_OREAL" target="VIVENDI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1728" source="L_OREAL" target="ACCOR" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1729" source="ORANGE" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1730" source="ORANGE" target="UNIBAIL" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1731" source="CAP_GEMINI" target="PERNOD_RICARD" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1732" source="CAP_GEMINI" target="AXA" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1733" source="CAP_GEMINI" target="CREDIT_AGRICOLE" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1734" source="SCHNEIDER_ELECTRIC" target="VIVENDI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1735" source="TECHNIP" target="ALSTOM" label="COMPANY-COMPANY" weight="2.0">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1736" source="TECHNIP" target="VALEO" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1737" source="ALSTOM" target="AXA" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1738" source="ALSTOM" target="SOLVAY" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1739" source="ALSTOM" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1740" source="ALSTOM" target="VALEO" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1741" source="LEGRAND" target="MICHELIN" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1742" source="VIVENDI" target="ACCOR" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1743" source="VIVENDI" target="VALEO" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1744" source="AXA" target="SOLVAY" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1745" source="AXA" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1746" source="VINCI" target="SOLVAY" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1747" source="VINCI" target="SANOFI" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+      <edge id="1748" source="ALCATEL-LUCENT" target="GEMALTO" label="COMPANY-COMPANY">
+        <attvalues>
+          <attvalue for="mmnt-edgetype" value="COMPANY&lt;--->COMPANY"/>
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="UTF-8"?><graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+    <key attr.name="label" attr.type="string" for="node" id="label"/>
+    <key attr.name="Edge Label" attr.type="string" for="edge" id="edgelabel"/>
+    <key attr.name="weight" attr.type="double" for="edge" id="weight"/>
+    <key attr.name="r" attr.type="int" for="node" id="r"/>
+    <key attr.name="g" attr.type="int" for="node" id="g"/>
+    <key attr.name="b" attr.type="int" for="node" id="b"/>
+    <key attr.name="x" attr.type="float" for="node" id="x"/>
+    <key attr.name="y" attr.type="float" for="node" id="y"/>
+    <key attr.name="size" attr.type="float" for="node" id="size"/>
+    <key attr.name="type" attr.type="string" for="node" id="type"/>
+    <key attr.name="MMNT-EdgeType" attr.type="string" for="edge" id="mmnt-edgetype"/>
+    <graph edgedefault="undirected">
+        <node id="GDF_SUEZ">
+            <data key="label">GDF_SUEZ</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">390.00238</data>
+            <data key="y">16.893137</data>
+        </node>
+        <node id="LVMH">
+            <data key="label">LVMH</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-42.816204</data>
+            <data key="y">164.3294</data>
+        </node>
+        <node id="SOCIETE_GENERALE">
+            <data key="label">SOCIETE_GENERALE</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-139.00523</data>
+            <data key="y">-125.11434</data>
+        </node>
+        <node id="CARREFOUR">
+            <data key="label">CARREFOUR</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">273.85147</data>
+            <data key="y">348.48068</data>
+        </node>
+        <node id="PUBLICIS">
+            <data key="label">PUBLICIS</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">253.34291</data>
+            <data key="y">215.4686</data>
+        </node>
+        <node id="AIRBUS">
+            <data key="label">AIRBUS</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">349.3259</data>
+            <data key="y">-314.00754</data>
+        </node>
+        <node id="TOTAL">
+            <data key="label">TOTAL</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">117.99148</data>
+            <data key="y">20.12605</data>
+        </node>
+        <node id="BOUYGUES">
+            <data key="label">BOUYGUES</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">32.164864</data>
+            <data key="y">-148.30229</data>
+        </node>
+        <node id="SAINT_GOBAIN">
+            <data key="label">SAINT_GOBAIN</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">153.95065</data>
+            <data key="y">-181.96288</data>
+        </node>
+        <node id="BNP_PARIBAS">
+            <data key="label">BNP_PARIBAS</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">323.4256</data>
+            <data key="y">-14.837313</data>
+        </node>
+        <node id="KERING">
+            <data key="label">KERING</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">64.362076</data>
+            <data key="y">110.1133</data>
+        </node>
+        <node id="LAFARGE">
+            <data key="label">LAFARGE</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">265.20364</data>
+            <data key="y">-197.5147</data>
+        </node>
+        <node id="VEOLIA_ENVIRONNEMENT">
+            <data key="label">VEOLIA_ENVIRONNEMENT</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">129.3075</data>
+            <data key="y">133.9866</data>
+        </node>
+        <node id="DANONE">
+            <data key="label">DANONE</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-289.4686</data>
+            <data key="y">705.85156</data>
+        </node>
+        <node id="AIR_LIQUIDE">
+            <data key="label">AIR_LIQUIDE</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-165.57428</data>
+            <data key="y">442.31616</data>
+        </node>
+        <node id="ESSILOR">
+            <data key="label">ESSILOR</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-36.381058</data>
+            <data key="y">972.3655</data>
+        </node>
+        <node id="EDF">
+            <data key="label">EDF</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">121.85201</data>
+            <data key="y">-422.2178</data>
+        </node>
+        <node id="ARCELORMITTAL">
+            <data key="label">ARCELORMITTAL</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">388.53284</data>
+            <data key="y">-546.21857</data>
+        </node>
+        <node id="RENAULT">
+            <data key="label">RENAULT</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-198.5969</data>
+            <data key="y">294.84488</data>
+        </node>
+        <node id="L_OREAL">
+            <data key="label">L_OREAL</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-71.46168</data>
+            <data key="y">614.0595</data>
+        </node>
+        <node id="ORANGE">
+            <data key="label">ORANGE</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-472.3486</data>
+            <data key="y">590.2254</data>
+        </node>
+        <node id="CAP_GEMINI">
+            <data key="label">CAP_GEMINI</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-307.96368</data>
+            <data key="y">-614.19586</data>
+        </node>
+        <node id="SCHNEIDER_ELECTRIC">
+            <data key="label">SCHNEIDER_ELECTRIC</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-94.08744</data>
+            <data key="y">768.7742</data>
+        </node>
+        <node id="TECHNIP">
+            <data key="label">TECHNIP</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-125.91291</data>
+            <data key="y">-465.96695</data>
+        </node>
+        <node id="ALSTOM">
+            <data key="label">ALSTOM</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-191.33612</data>
+            <data key="y">-226.12863</data>
+        </node>
+        <node id="LEGRAND">
+            <data key="label">LEGRAND</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">445.07208</data>
+            <data key="y">-145.39375</data>
+        </node>
+        <node id="VIVENDI">
+            <data key="label">VIVENDI</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">20.321417</data>
+            <data key="y">430.49448</data>
+        </node>
+        <node id="PERNOD_RICARD">
+            <data key="label">PERNOD_RICARD</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">45.998592</data>
+            <data key="y">-652.21893</data>
+        </node>
+        <node id="AXA">
+            <data key="label">AXA</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-284.00208</data>
+            <data key="y">-284.6612</data>
+        </node>
+        <node id="VINCI">
+            <data key="label">VINCI</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-380.55783</data>
+            <data key="y">92.7131</data>
+        </node>
+        <node id="ALCATEL-LUCENT">
+            <data key="label">ALCATEL-LUCENT</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">427.94382</data>
+            <data key="y">739.2294</data>
+        </node>
+        <node id="MICHELIN">
+            <data key="label">MICHELIN</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">510.46158</data>
+            <data key="y">-262.20294</data>
+        </node>
+        <node id="SOLVAY">
+            <data key="label">SOLVAY</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-408.32123</data>
+            <data key="y">-88.61565</data>
+        </node>
+        <node id="SANOFI">
+            <data key="label">SANOFI</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-246.24825</data>
+            <data key="y">103.9259</data>
+        </node>
+        <node id="CREDIT_AGRICOLE">
+            <data key="label">CREDIT_AGRICOLE</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-521.57404</data>
+            <data key="y">-978.21783</data>
+        </node>
+        <node id="GEMALTO">
+            <data key="label">GEMALTO</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">300.11057</data>
+            <data key="y">1101.8782</data>
+        </node>
+        <node id="ACCOR">
+            <data key="label">ACCOR</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">190.10574</data>
+            <data key="y">659.4108</data>
+        </node>
+        <node id="SAFRAN">
+            <data key="label">SAFRAN</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">705.26294</data>
+            <data key="y">23.528854</data>
+        </node>
+        <node id="UNIBAIL">
+            <data key="label">UNIBAIL</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-810.6464</data>
+            <data key="y">844.88715</data>
+        </node>
+        <node id="VALEO">
+            <data key="label">VALEO</data>
+            <data key="type">COMPANY</data>
+            <data key="size">10.0</data>
+            <data key="r">0</data>
+            <data key="g">0</data>
+            <data key="b">0</data>
+            <data key="x">-42.297207</data>
+            <data key="y">-91.04278</data>
+        </node>
+        <edge id="1641" source="GDF_SUEZ" target="LVMH">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1642" source="GDF_SUEZ" target="TOTAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1643" source="GDF_SUEZ" target="SAINT_GOBAIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1644" source="GDF_SUEZ" target="LAFARGE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1645" source="GDF_SUEZ" target="LEGRAND">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1646" source="GDF_SUEZ" target="SAFRAN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1647" source="LVMH" target="CARREFOUR">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">2.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1648" source="LVMH" target="PUBLICIS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1649" source="LVMH" target="RENAULT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1650" source="LVMH" target="VINCI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1651" source="LVMH" target="SOLVAY">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1652" source="SOCIETE_GENERALE" target="PUBLICIS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1653" source="SOCIETE_GENERALE" target="SAINT_GOBAIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1654" source="SOCIETE_GENERALE" target="VEOLIA_ENVIRONNEMENT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1655" source="SOCIETE_GENERALE" target="CAP_GEMINI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1656" source="SOCIETE_GENERALE" target="ALSTOM">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1657" source="SOCIETE_GENERALE" target="AXA">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1658" source="SOCIETE_GENERALE" target="VINCI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">2.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1659" source="SOCIETE_GENERALE" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1660" source="CARREFOUR" target="PUBLICIS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1661" source="CARREFOUR" target="BNP_PARIBAS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1662" source="CARREFOUR" target="VEOLIA_ENVIRONNEMENT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1663" source="CARREFOUR" target="ACCOR">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1664" source="PUBLICIS" target="BNP_PARIBAS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1665" source="PUBLICIS" target="LAFARGE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1666" source="PUBLICIS" target="ALCATEL-LUCENT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1667" source="AIRBUS" target="TOTAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">2.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1668" source="AIRBUS" target="SAINT_GOBAIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1669" source="AIRBUS" target="BNP_PARIBAS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1670" source="AIRBUS" target="ARCELORMITTAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1671" source="TOTAL" target="BOUYGUES">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1672" source="TOTAL" target="SAINT_GOBAIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1673" source="TOTAL" target="BNP_PARIBAS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1674" source="TOTAL" target="KERING">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1675" source="TOTAL" target="LAFARGE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">2.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1676" source="TOTAL" target="AIR_LIQUIDE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1677" source="TOTAL" target="RENAULT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1678" source="TOTAL" target="LEGRAND">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1679" source="TOTAL" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1680" source="BOUYGUES" target="SAINT_GOBAIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1681" source="BOUYGUES" target="BNP_PARIBAS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1682" source="BOUYGUES" target="KERING">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1683" source="BOUYGUES" target="EDF">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1684" source="BOUYGUES" target="ALSTOM">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">2.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1685" source="BOUYGUES" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1686" source="SAINT_GOBAIN" target="BNP_PARIBAS">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1687" source="SAINT_GOBAIN" target="VEOLIA_ENVIRONNEMENT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1688" source="SAINT_GOBAIN" target="ALSTOM">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1689" source="SAINT_GOBAIN" target="LEGRAND">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1690" source="SAINT_GOBAIN" target="AXA">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1691" source="SAINT_GOBAIN" target="MICHELIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1692" source="BNP_PARIBAS" target="KERING">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1693" source="BNP_PARIBAS" target="LAFARGE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">2.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1694" source="BNP_PARIBAS" target="VEOLIA_ENVIRONNEMENT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">3.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1695" source="BNP_PARIBAS" target="MICHELIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1696" source="BNP_PARIBAS" target="SAFRAN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1697" source="KERING" target="LAFARGE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1698" source="KERING" target="VEOLIA_ENVIRONNEMENT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1699" source="KERING" target="RENAULT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1700" source="KERING" target="VIVENDI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1701" source="LAFARGE" target="VEOLIA_ENVIRONNEMENT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1702" source="LAFARGE" target="EDF">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1703" source="LAFARGE" target="ARCELORMITTAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1704" source="LAFARGE" target="LEGRAND">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1705" source="LAFARGE" target="PERNOD_RICARD">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1706" source="LAFARGE" target="MICHELIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1707" source="VEOLIA_ENVIRONNEMENT" target="L_OREAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1708" source="VEOLIA_ENVIRONNEMENT" target="VALEO">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1709" source="DANONE" target="AIR_LIQUIDE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1710" source="DANONE" target="ESSILOR">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1711" source="DANONE" target="RENAULT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1712" source="DANONE" target="ORANGE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1713" source="AIR_LIQUIDE" target="RENAULT">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1714" source="AIR_LIQUIDE" target="L_OREAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1715" source="AIR_LIQUIDE" target="SCHNEIDER_ELECTRIC">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1716" source="AIR_LIQUIDE" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1717" source="ESSILOR" target="L_OREAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1718" source="ESSILOR" target="SCHNEIDER_ELECTRIC">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1719" source="ESSILOR" target="GEMALTO">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1720" source="EDF" target="ARCELORMITTAL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1721" source="EDF" target="TECHNIP">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1722" source="EDF" target="VALEO">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1723" source="RENAULT" target="VINCI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1724" source="RENAULT" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1725" source="L_OREAL" target="ORANGE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1726" source="L_OREAL" target="SCHNEIDER_ELECTRIC">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1727" source="L_OREAL" target="VIVENDI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1728" source="L_OREAL" target="ACCOR">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1729" source="ORANGE" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1730" source="ORANGE" target="UNIBAIL">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1731" source="CAP_GEMINI" target="PERNOD_RICARD">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1732" source="CAP_GEMINI" target="AXA">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1733" source="CAP_GEMINI" target="CREDIT_AGRICOLE">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1734" source="SCHNEIDER_ELECTRIC" target="VIVENDI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1735" source="TECHNIP" target="ALSTOM">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">2.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1736" source="TECHNIP" target="VALEO">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1737" source="ALSTOM" target="AXA">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1738" source="ALSTOM" target="SOLVAY">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1739" source="ALSTOM" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1740" source="ALSTOM" target="VALEO">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1741" source="LEGRAND" target="MICHELIN">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1742" source="VIVENDI" target="ACCOR">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1743" source="VIVENDI" target="VALEO">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1744" source="AXA" target="SOLVAY">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1745" source="AXA" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1746" source="VINCI" target="SOLVAY">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1747" source="VINCI" target="SANOFI">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+        <edge id="1748" source="ALCATEL-LUCENT" target="GEMALTO">
+            <data key="edgelabel">COMPANY-COMPANY</data>
+            <data key="weight">1.0</data>
+            <data key="mmnt-edgetype">COMPANY&lt;---&gt;COMPANY</data>
+        </edge>
+    </graph>
+</graphml>
