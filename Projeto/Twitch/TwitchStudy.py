@@ -5,7 +5,7 @@ from pathlib import Path
 
 # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
 
-country = "ENGB"
+country = "PTBR"
 
 # ================= #
 current_dir = Path.cwd()

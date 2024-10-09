@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# Definir a língua escolhida
-country = "ENGB"
+# Escolher entre: DE, ENGB, ES, FR, PTBR, RU
+country = "PTBR"
 
 # Caminho do diretório atual
 current_dir = Path.cwd()
