@@ -1,10 +1,11 @@
 import networkx as nx
+import igraph as ig
+import leidenalg as la
 import community.community_louvain as community_louvain
 import pandas as pd
 from pathlib import Path
 
 # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
-
 country = "PTBR"
 
 # ================= #
@@ -20,58 +21,67 @@ targetPath = current_dir / country / Filetarget
 nodos_df = pd.read_csv(targetPath)
 arestas_df = pd.read_csv(edgePath)
 
-# Criar grafo vazio
-G = nx.Graph()
+# Criar grafo vazio em NetworkX
+G_nx = nx.Graph()
 
 # Adicionar os nodos ao grafo com as visualizações de cada conta (relação entre tamanho do nodo e views)
 for _, row in nodos_df.iterrows():
-    G.add_node(row['new_id'],
-               views=row['views'],  # Adiciona as views ao nodo
-               features=row.to_dict())  # Adiciona as características de cada nodo
+    G_nx.add_node(row['new_id'],
+                  views=row['views'],  # Adiciona as views ao nodo
+                  features=row.to_dict())  # Adiciona as características de cada nodo
 
 # Adicionar as arestas ao grafo
 for _, row in arestas_df.iterrows():
-    G.add_edge(row['from'], row['to'])
+    G_nx.add_edge(row['from'], row['to'])
 
 # Visualizar o nº de nós e ligações
-print("Número de nós:", G.number_of_nodes())
-print("Número de arestas:", G.number_of_edges())
+print("Número de nós:", G_nx.number_of_nodes())
+print("Número de arestas:", G_nx.number_of_edges())
+
+# ===========================
+# =========== LEIDEN ===========
+# ===========================
+
+# Converter o grafo de NetworkX para iGraph
+G_ig = ig.Graph.TupleList(G_nx.edges(), directed=False)
+
+# Executar o algoritmo de Leiden
+partition_leiden = la.find_partition(G_ig, la.ModularityVertexPartition)
+
+# Obter as comunidades do Leiden
+comunidades_leiden = partition_leiden.membership
+
+# Adicionar o número da comunidade (Leiden) a cada nodo no grafo de NetworkX
+for i, node in enumerate(G_ig.vs['name']):
+    G_nx.nodes[int(node)]['community_leiden'] = comunidades_leiden[i]
+
+# Número de comunidades detetadas pelo Leiden
+num_comunidades_leiden = len(set(comunidades_leiden))
+print(f"Número de comunidades detetadas pelo Leiden: {num_comunidades_leiden}")
 
 # ============== MÉTRICAS DE CENTRALIDADE ==============
 # 1. Centralidade de grau
-degree_centrality = nx.degree_centrality(G)
+degree_centrality = nx.degree_centrality(G_nx)
 
 # 2. Centralidade de proximidade
-closeness_centrality = nx.closeness_centrality(G)
+closeness_centrality = nx.closeness_centrality(G_nx)
 
 # 3. Centralidade de intermediação
-betweenness_centrality = nx.betweenness_centrality(G)
+betweenness_centrality = nx.betweenness_centrality(G_nx)
 
 # 4. Centralidade de autovetor
-eigenvector_centrality = nx.eigenvector_centrality(G)
+eigenvector_centrality = nx.eigenvector_centrality(G_nx)
 
 # Mostrar as 5 contas com maior centralidade de grau
 top_5_degree = sorted(degree_centrality.items(), key=lambda x: x[1], reverse=True)[:5]
 print("Top 5 contas com maior centralidade de grau:", top_5_degree)
 
-# ============== DETEÇÃO DE COMUNIDADES ==============
-# Usar o algoritmo de Louvain para deteção de comunidades
-partition = community_louvain.best_partition(G)
-
-# Adicionar o número da comunidade a cada nodo no grafo
-for node, community in partition.items():
-    G.nodes[node]['community'] = community
-
-# Número de comunidades detetadas
-num_comunidades = len(set(partition.values()))
-print(f"Número de comunidades detetadas: {num_comunidades}")
-
 # ============== TRANSITIVIDADE ==============
 # Coeficiente de clustering (transitividade local)
-clustering_coef = nx.clustering(G)
+clustering_coef = nx.clustering(G_nx)
 
 # Coeficiente de clustering médio
-avg_clustering = nx.average_clustering(G)
+avg_clustering = nx.average_clustering(G_nx)
 print(f"Coeficiente de clustering médio: {avg_clustering:.4f}")
 
 # ============== OUTPUT DOS RESULTADOS ==============
@@ -79,13 +89,13 @@ print(f"Coeficiente de clustering médio: {avg_clustering:.4f}")
 
 # Criar um DataFrame com os nodos e as suas métricas de centralidade
 df_metrics = pd.DataFrame({
-    'node': list(G.nodes),
-    'degree_centrality': [degree_centrality[node] for node in G.nodes],
-    'closeness_centrality': [closeness_centrality[node] for node in G.nodes],
-    'betweenness_centrality': [betweenness_centrality[node] for node in G.nodes],
-    'eigenvector_centrality': [eigenvector_centrality[node] for node in G.nodes],
-    'community': [partition[node] for node in G.nodes],
-    'clustering_coef': [clustering_coef[node] for node in G.nodes],
+    'node': list(G_nx.nodes),
+    'degree_centrality': [degree_centrality[node] for node in G_nx.nodes],
+    'closeness_centrality': [closeness_centrality[node] for node in G_nx.nodes],
+    'betweenness_centrality': [betweenness_centrality[node] for node in G_nx.nodes],
+    'eigenvector_centrality': [eigenvector_centrality[node] for node in G_nx.nodes],
+    'community_leiden': [G_nx.nodes[node]['community_leiden'] for node in G_nx.nodes],
+    'clustering_coef': [clustering_coef[node] for node in G_nx.nodes],
 })
 
 # Ordenar pelo grau de centralidade (para obter os mais influentes)
@@ -95,7 +105,7 @@ df_metrics_sorted = df_metrics.sort_values(by='degree_centrality', ascending=Fal
 print(df_metrics_sorted.head())
 
 # Guardar o DataFrame num ficheiro CSV para análise posterior
-output_path_csv = current_dir / f"twitch_network_metrics_{country}.csv"
+output_path_csv = current_dir / country / f"twitch_network_metrics_{country}.csv"
 df_metrics_sorted.to_csv(output_path_csv, index=False)
 
 # Mostrar o caminho do CSV gerado

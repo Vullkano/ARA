@@ -10,7 +10,7 @@ country = "PTBR"
 current_dir = Path.cwd()
 
 # Caminho do CSV com as comunidades
-community_csv_path = current_dir / f"twitch_network_metrics_{country}.csv"  # O nome pode ser diferente
+community_csv_path = current_dir / country / f"twitch_network_metrics_{country}.csv"  # O nome pode ser diferente
 
 # Ler o CSV
 df_communities = pd.read_csv(community_csv_path)
@@ -20,7 +20,7 @@ G = nx.Graph()
 
 # Adicionar os nodos ao grafo
 for index, row in df_communities.iterrows():
-    G.add_node(row['node'], community=row['community'])
+    G.add_node(row['node'], community=row['community_leiden'])
 
 # Adicionar as arestas a partir do CSV original (caso tenha um CSV de arestas)
 edgePath = current_dir / country / f"musae_{country}_edges.csv"

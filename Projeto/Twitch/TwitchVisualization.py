@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 
 # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
-country = "PTBR"
+country = "RU"
+PercNodes = 20  # 40 -> 40% dos nodos da rede
 
 # ================= #
 current_dir = Path.cwd()
@@ -39,8 +40,12 @@ for _, row in arestas_df.iterrows():
 print("Número de nós:", G.number_of_nodes())
 print("Número de arestas:", G.number_of_edges())
 
+NumNodes = int(G.number_of_nodes() * (PercNodes / 100))
+if NumNodes < 1500:
+    NumNodes = 1500
+
 # Desenhar uma pequena parte do grafo (cuidado para n explodir)
-subgrafo = G.subgraph(list(G.nodes())[:500])
+subgrafo = G.subgraph(list(G.nodes())[:NumNodes])
 
 # Obter os valores de "views" para cada nodo no subgrafo
 views = [subgrafo.nodes[n]['views'] for n in subgrafo.nodes]
@@ -90,26 +95,39 @@ nx.draw_networkx_nodes(subgrafo, pos,
 nx.draw_networkx_edges(subgrafo, pos, alpha=0.2, edge_color='#A9A9A9')
 
 # Adicionar legenda
-legend_elements = [
+legend_elements1 = [
     plt.Line2D([0], [0], marker='s', color='w', label='Mature (Quadrado)',
-               markersize=15, markeredgecolor='white'),  # Roxo para partner
+               markersize=15, markeredgecolor='white'),
     plt.Line2D([0], [0], marker='o', color='w', label='Non-Mature (Círculo)',
-               markersize=15, markeredgecolor='white'),  # Azul para non-partner
-    plt.Line2D([0], [0], marker='s', color='w', label='Partner (Roxo)',
-               markerfacecolor='#9146FF', markersize=15, markeredgecolor='white'),  # Partner
-    plt.Line2D([0], [0], marker='o', color='w', label='Non-Partner (Azul)',
-               markerfacecolor='#1E90FF', markersize=15, markeredgecolor='white')   # Non-Partner
+               markersize=15, markeredgecolor='white')
 ]
-plt.legend(handles=legend_elements, loc='upper right', fontsize=12)
+
+legend_elements2 = [
+    plt.Line2D([0], [0], marker='v', color='w', label='Partner (Roxo)',
+               markerfacecolor='#9146FF', markersize=15, markeredgecolor='white'),
+    plt.Line2D([0], [0], marker='v', color='w', label='Non-Partner (Azul)',
+               markerfacecolor='#1E90FF', markersize=15, markeredgecolor='white')
+]
+
+# Adicionar a primeira legenda (Mature/Non-Mature) no canto superior direito
+legend1 = plt.legend(handles=legend_elements1, loc='upper right', fontsize=12, title="Mature Status")
+
+# Adicionar a segunda legenda (Partner/Non-Partner) logo abaixo da primeira, ajustando a posição com "bbox_to_anchor"
+legend2 = plt.legend(handles=legend_elements2, loc='upper right', fontsize=12, title="Partner Status",
+                     bbox_to_anchor=(0.995, 0.94))  # Ajustar o valor de "0.85" para posicionar
+
+# Re-adicionar a primeira legenda (para não ser sobrescrita pela segunda)
+plt.gca().add_artist(legend1)
 
 # Título do gráfico
-plt.title("Subgrafo da Rede Twitch", fontsize=24, color='white')
+plt.title(f"Subgrafo da Rede Twitch {country}", fontsize=24, color='white')
 
 # Caminho para salvar a imagem no diretório atual
-output_path = current_dir / f"subgrafo_rede_twitch_{country}.png"
+output_path = current_dir / "Imagens" / f"subgrafo_rede_twitch_{country}.png"
 
 # Salvar o gráfico como imagem PNG
 plt.savefig(output_path, bbox_inches='tight', transparent=False)
 
 # Mostrar o gráfico
 plt.show()
+
