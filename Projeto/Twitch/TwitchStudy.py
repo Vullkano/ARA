@@ -6,7 +6,7 @@ import pandas as pd
 from pathlib import Path
 
 # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
-country = "PTBR"
+country = "ENGB"
 
 # ================= #
 current_dir = Path.cwd()
@@ -28,6 +28,9 @@ G_nx = nx.Graph()
 for _, row in nodos_df.iterrows():
     G_nx.add_node(row['new_id'],
                   views=row['views'],  # Adiciona as views ao nodo
+                  partner=row['partner'],  # Adiciona a informação de "partner"
+                  mature=row['mature'],  # Adiciona a informação de "mature"
+                  days=row['days'],  # Adiciona a informação de "days"
                   features=row.to_dict())  # Adiciona as características de cada nodo
 
 # Adicionar as arestas ao grafo
@@ -38,9 +41,9 @@ for _, row in arestas_df.iterrows():
 print("Número de nós:", G_nx.number_of_nodes())
 print("Número de arestas:", G_nx.number_of_edges())
 
-# ===========================
-# =========== LEIDEN ===========
-# ===========================
+# =========================== #
+# =========== LEIDEN =========== #
+# =========================== #
 
 # Converter o grafo de NetworkX para iGraph
 G_ig = ig.Graph.TupleList(G_nx.edges(), directed=False)
@@ -59,7 +62,7 @@ for i, node in enumerate(G_ig.vs['name']):
 num_comunidades_leiden = len(set(comunidades_leiden))
 print(f"Número de comunidades detetadas pelo Leiden: {num_comunidades_leiden}")
 
-# ============== MÉTRICAS DE CENTRALIDADE ==============
+# ============== MÉTRICAS DE CENTRALIDADE ============== #
 # 1. Centralidade de grau
 degree_centrality = nx.degree_centrality(G_nx)
 
@@ -76,7 +79,7 @@ eigenvector_centrality = nx.eigenvector_centrality(G_nx)
 top_5_degree = sorted(degree_centrality.items(), key=lambda x: x[1], reverse=True)[:5]
 print("Top 5 contas com maior centralidade de grau:", top_5_degree)
 
-# ============== TRANSITIVIDADE ==============
+# ============== TRANSITIVIDADE ============== #
 # Coeficiente de clustering (transitividade local)
 clustering_coef = nx.clustering(G_nx)
 
@@ -84,7 +87,7 @@ clustering_coef = nx.clustering(G_nx)
 avg_clustering = nx.average_clustering(G_nx)
 print(f"Coeficiente de clustering médio: {avg_clustering:.4f}")
 
-# ============== OUTPUT DOS RESULTADOS ==============
+# ============== OUTPUT DOS RESULTADOS ============== #
 # Guardar resultados principais num DataFrame para melhor visualização
 
 # Criar um DataFrame com os nodos e as suas métricas de centralidade
@@ -95,7 +98,11 @@ df_metrics = pd.DataFrame({
     'betweenness_centrality': [betweenness_centrality[node] for node in G_nx.nodes],
     'eigenvector_centrality': [eigenvector_centrality[node] for node in G_nx.nodes],
     'community_leiden': [G_nx.nodes[node]['community_leiden'] for node in G_nx.nodes],
-    'clustering_coef': [clustering_coef[node] for node in G_nx.nodes],
+    'views': [G_nx.nodes[node]['views'] for node in G_nx.nodes],  # Adiciona as views
+    'partner': [G_nx.nodes[node]['partner'] for node in G_nx.nodes],  # Adiciona o partner
+    'mature': [G_nx.nodes[node]['mature'] for node in G_nx.nodes],  # Adiciona o mature
+    'days': [G_nx.nodes[node]['days'] for node in G_nx.nodes],  # Adiciona os days
+    'clustering_coef': [clustering_coef[node] for node in G_nx.nodes],  # Coeficiente de clustering
 })
 
 # Ordenar pelo grau de centralidade (para obter os mais influentes)
