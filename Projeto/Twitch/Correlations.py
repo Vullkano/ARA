@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
+import numpy as np
 
 # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
 country = "PTBR"
@@ -9,6 +10,10 @@ country = "PTBR"
 # Caminho do ficheiro CSV
 current_dir = Path.cwd()
 csv_path = current_dir / country / f"twitch_network_metrics_{country}.csv"
+output_dir = current_dir / "Imagens"
+
+# Criar a pasta "Imagens" se não existir
+output_dir.mkdir(exist_ok=True)
 
 # Ler o ficheiro CSV
 df = pd.read_csv(csv_path)
@@ -17,20 +22,45 @@ df = pd.read_csv(csv_path)
 df['partner'] = df['partner'].astype(int)
 df['mature'] = df['mature'].astype(int)
 
-# Calcular a matriz de correlação
-correlation_matrix = df.corr()
+# Excluir a coluna "node" da matriz de correlação
+df = df.drop(columns=['node'])
+
+# Calcular a matriz de correlação (Pearson)
+correlation_matrix = df.corr(method='pearson')
 
 # Configurar o tamanho da figura
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(14, 10))
 
-# Criar o mapa de calor
-sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap='coolwarm', square=True, cbar_kws={"shrink": .8})
+# Definir o fundo escuro para a visualização
+plt.style.use('dark_background')
+
+# Criar o mapa de calor para a correlação
+sns.heatmap(correlation_matrix,
+            annot=True,
+            fmt=".2f",
+            cmap='Spectral_r',  # Paleta de cores mais vibrante
+            square=True,
+            cbar_kws={"shrink": .8, 'ticks': np.round(np.linspace(-1, 1, 5), 2)},  # Ajuste na barra de cor
+            linewidths=0.5,
+            linecolor='gray',
+            annot_kws={"fontsize": 10, "weight": "bold", "color": "black"},  # Letra mais bold e cor distinta
+            alpha=0.9,  # Um pouco de transparência para melhorar a estética
+            vmin=-1,  # Definir limite inferior da escala
+            vmax=1)    # Definir limite superior da escala
 
 # Configurar os rótulos e título
-plt.title('Matriz de Correlação das Variáveis')
-plt.xticks(rotation=45)
-plt.yticks(rotation=0)
+plt.title('Matriz de Correlação', fontsize=22, pad=20, color='white', weight='bold')
+plt.xticks(rotation=90, fontsize=12, color='white')
+plt.yticks(rotation=0, fontsize=12, color='white')
+
+# Ajustar layout
+plt.tight_layout()
+
+# Caminho para salvar a imagem
+output_path = output_dir / f"matriz_correlacao_{country}.png"
+plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='black')  # Melhor qualidade da imagem
 
 # Mostrar o gráfico
-plt.tight_layout()
 plt.show()
+
+print(f"Imagem salva em: {output_path}")
