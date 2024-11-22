@@ -10,10 +10,16 @@ country = "PTBR"
 # Caminho do ficheiro CSV
 current_dir = Path.cwd()
 csv_path = current_dir / country / f"twitch_network_metrics_{country}.csv"
-output_dir = current_dir / "Graph"
+output_dir = current_dir / "Graficos_Visualizacao"
 
 # Cria a pasta "Graph" se não existir
 output_dir.mkdir(exist_ok=True)
+
+# Função para criar subpastas para cada tipo de gráfico
+def create_subfolder(folder_name):
+    subfolder = output_dir / folder_name
+    subfolder.mkdir(exist_ok=True)
+    return subfolder
 
 # Ler o ficheiro CSV
 df = pd.read_csv(csv_path)
@@ -29,7 +35,7 @@ plt.rcParams['ytick.labelsize'] = 12
 
 
 # Função para desenhar e salvar um histograma
-def plot_histogram(column_name, title, color):
+def plot_histogram(column_name, title, color, hist_folder):
     plt.figure(figsize=(10, 6))
     sns.histplot(df[column_name], kde=True, color=color, bins=30, edgecolor='black')  # Adiciona contorno às barras
     plt.title(f'{title} ({country})')
@@ -46,23 +52,13 @@ def plot_histogram(column_name, title, color):
     plt.text(mean_value + 0.5, 5, f'Média: {mean_value:.2f}', color='red')
 
     # Caminho para salvar o gráfico
-    plt.savefig(output_dir / f"{title.replace(' ', '_')}_{country}.png")
+    hist_folder = create_subfolder('Histograms')  # Cria subpasta "Histograms"
+    plt.savefig(hist_folder / f"{title.replace(' ', '_')}_{country}.png")
     plt.show()
 
 
-# Histograma para variáveis contínuas
-plot_histogram('degree', 'Histograma - Degree', 'blue')  # Histograma para o grau (degree)
-plot_histogram('degree_centrality', 'Histograma - Degree Centrality', 'blue')
-plot_histogram('closeness_centrality', 'Histograma - Closeness Centrality', 'green')
-plot_histogram('betweenness_centrality', 'Histograma - Betweenness Centrality', 'purple')
-plot_histogram('eigenvector_centrality', 'Histograma - Eigenvector Centrality', 'red')
-plot_histogram('views', 'Histograma - Views', 'orange')  # Histograma para views
-plot_histogram('days', 'Histograma - Days', 'teal')  # Histograma para dias
-plot_histogram('clustering_coef', 'Histograma - Clustering Coefficient', 'pink')  # Histograma para coeficiente de clustering
-
-
 # Função para desenhar e salvar um gráfico circular (pie chart)
-def plot_pie_chart(column_name, title):
+def plot_pie_chart(column_name, title, piechart_folder):
     plt.figure(figsize=(8, 8))
     data = df[column_name].value_counts()
     plt.pie(data, labels=data.index, autopct='%1.1f%%', startangle=90, colors=sns.color_palette('Paired'))
@@ -79,11 +75,26 @@ def plot_pie_chart(column_name, title):
                  s=str(value), color='white', fontsize=12, ha='center')
 
     # Caminho para salvar o gráfico
-    plt.savefig(output_dir / f"{title.replace(' ', '_')}_{country}.png")
+    piechart_folder = create_subfolder('PieCharts')  # Cria subpasta "PieCharts"
+    plt.savefig(piechart_folder / f"{title.replace(' ', '_')}_{country}.png")
     plt.show()
 
 
+# Criar as subpastas para os tipos de gráficos
+hist_folder = create_subfolder('Histograms')
+piechart_folder = create_subfolder('PieCharts')
+
+# Histograma para variáveis contínuas
+plot_histogram('degree', 'Histograma - Degree', 'blue', hist_folder)  # Histograma para o grau (degree)
+plot_histogram('degree_centrality', 'Histograma - Degree Centrality', 'blue', hist_folder)
+plot_histogram('closeness_centrality', 'Histograma - Closeness Centrality', 'green', hist_folder)
+plot_histogram('betweenness_centrality', 'Histograma - Betweenness Centrality', 'purple', hist_folder)
+plot_histogram('eigenvector_centrality', 'Histograma - Eigenvector Centrality', 'red', hist_folder)
+plot_histogram('views', 'Histograma - Views', 'orange', hist_folder)  # Histograma para views
+plot_histogram('days', 'Histograma - Days', 'teal', hist_folder)  # Histograma para dias
+plot_histogram('clustering_coef', 'Histograma - Clustering Coefficient', 'pink', hist_folder)  # Histograma para coeficiente de clustering
+
 # Gráficos circulares para variáveis categóricas
-plot_pie_chart('community_leiden', 'Distribuição de Comunidades (Leiden)')
-plot_pie_chart('partner', 'Distribuição de Parceiros (Partner)')
-plot_pie_chart('mature', 'Distribuição de Conteúdo Maduro (Mature)')
+plot_pie_chart('community_leiden', 'Distribuição de Comunidades (Leiden)', piechart_folder)
+plot_pie_chart('partner', 'Distribuição de Parceiros (Partner)', piechart_folder)
+plot_pie_chart('mature', 'Distribuição de Conteúdo Maduro (Mature)', piechart_folder)
