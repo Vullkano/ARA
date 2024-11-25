@@ -11,10 +11,10 @@ def create_subfolder(folder_name, output_dir):
     return subfolder
 
 # Função para desenhar e salvar um histograma
-def plot_histogram(column_name, title, color):
+def plot_histogram(df, column_name, color, country, output_dir):
     plt.figure(figsize=(10, 6))
     sns.histplot(df[column_name], kde=True, color=color, bins=30, edgecolor='black')  # Adiciona contorno às barras
-    plt.title(f'{title} ({country})')
+    plt.title(f'Histograma - {column_name} ({country})')
     plt.xlabel(column_name)
     plt.ylabel('Frequência')
     plt.grid(True)
@@ -29,30 +29,42 @@ def plot_histogram(column_name, title, color):
 
     # Caminho para salvar o gráfico
     hist_folder = create_subfolder('Histograms', output_dir)  # Cria subpasta "Histograms"
-    plt.savefig(hist_folder / f"{title.replace(' ', '_')}_{country}.png")
+    plt.savefig(hist_folder / f"{'PieChart - {column_name} ({country})'.replace(' ', '_')}_{country}.png")
     plt.show()
 
 
 # Função para desenhar e salvar um gráfico circular (pie chart)
-def plot_pie_chart(column_name, title, piechart_folder):
+def plot_pie_chart(df, column_name, country, output_dir):
     plt.figure(figsize=(8, 8))
     data = df[column_name].value_counts()
-    plt.pie(data, labels=data.index, autopct='%1.1f%%', startangle=90, colors=sns.color_palette('Paired'))
-    plt.title(f'{title} ({country})', fontsize=18)
-    plt.axis('equal')  # Equal aspect ratio to ensure the pie chart is circular
+    # Gráfico de rosca
+    wedges, texts, autotexts = plt.pie(
+        data,
+        labels=data.index,
+        autopct='%1.1f%%',
+        startangle=90,
+        colors=sns.color_palette('Paired'),
+        wedgeprops={'width': 0.4}
+    )
 
-    # Retira a notação científica
-    plt.ticklabel_format(style='plain')
+    plt.title(f'Donut Chart - {column_name} ({country})', fontsize=18)
+    plt.axis('equal')  # Mantém a proporção circular
 
-    # Adicionar anotações com o número total
-    for i, value in enumerate(data):
-        plt.text(x=np.cos(np.deg2rad(i * 360 / len(data))) * 0.5,
-                 y=np.sin(np.deg2rad(i * 360 / len(data))) * 0.5,
-                 s=str(value), color='white', fontsize=12, ha='center')
+    # Adicionar anotações com o número total no centro das fatias
+    for wedge, value in zip(wedges, data):
+        angle = (wedge.theta2 + wedge.theta1) / 2  # Ângulo médio da fatia
+        x = np.cos(np.deg2rad(angle)) * 0.7  # Ajuste do raio
+        y = np.sin(np.deg2rad(angle)) * 0.7
+
+        plt.text(
+            x, y, str(value),
+            color='black', fontsize=12, fontweight='bold', ha='center', va='center',
+            bbox=dict(boxstyle="round,pad=0.3", edgecolor="none", facecolor="white", alpha=0.8)
+        )
 
     # Caminho para salvar o gráfico
     piechart_folder = create_subfolder('PieCharts', output_dir)  # Cria subpasta "PieCharts"
-    plt.savefig(piechart_folder / f"{title.replace(' ', '_')}_{country}.png")
+    plt.savefig(piechart_folder / f"{'PieChart - {column_name} ({country})'.replace(' ', '_')}_{country}.png")
     plt.show()
 
 if __name__ == "__main__":
@@ -83,16 +95,16 @@ if __name__ == "__main__":
     piechart_folder = create_subfolder('PieCharts', output_dir)
 
     # Histograma para variáveis contínuas
-    plot_histogram('degree', 'Histograma - Degree', 'blue')  # Histograma para o grau (degree)
-    plot_histogram('degree_centrality', 'Histograma - Degree Centrality', 'blue')
-    plot_histogram('closeness_centrality', 'Histograma - Closeness Centrality', 'green')
-    plot_histogram('betweenness_centrality', 'Histograma - Betweenness Centrality', 'purple')
-    plot_histogram('eigenvector_centrality', 'Histograma - Eigenvector Centrality', 'red',)
-    plot_histogram('views', 'Histograma - Views', 'orange')  # Histograma para views
-    plot_histogram('days', 'Histograma - Days', 'teal')  # Histograma para dias
-    plot_histogram('clustering_coef', 'Histograma - Clustering Coefficient', 'pink') # Histograma para coeficiente de clustering
+    plot_histogram(df,'degree', 'blue', country, output_dir)  # Histograma para o grau (degree)
+    plot_histogram(df,'degree_centrality', 'blue', country, output_dir)
+    plot_histogram(df,'closeness_centrality', 'green', country, output_dir)
+    plot_histogram(df,'betweenness_centrality', 'purple', country, output_dir)
+    plot_histogram(df,'eigenvector_centrality', 'red', country, output_dir)
+    plot_histogram(df,'views', 'orange', country, output_dir)  # Histograma para views
+    plot_histogram(df,'days', 'teal', country, output_dir)  # Histograma para dias
+    plot_histogram(df,'clustering_coef', 'pink', country, output_dir) # Histograma para coeficiente de clustering
 
     # Gráficos circulares para variáveis categóricas
-    plot_pie_chart('community_leiden', 'Distribuição de Comunidades (Leiden)', piechart_folder)
-    plot_pie_chart('partner', 'Distribuição de Parceiros (Partner)', piechart_folder)
-    plot_pie_chart('mature', 'Distribuição de Conteúdo Maduro (Mature)', piechart_folder)
+    plot_pie_chart(df, 'community_leiden', country, output_dir)
+    plot_pie_chart(df, 'partner', country, output_dir)
+    plot_pie_chart(df, 'mature', country, output_dir)
