@@ -29,8 +29,8 @@ def seeGraph(current_dir, edgePath, targetPath, PercNodes, country):
     print("Número de arestas:", G.number_of_edges())
 
     NumNodes = int(G.number_of_nodes() * (PercNodes / 100))
-    if NumNodes < 1500:
-        NumNodes = 1500
+    if NumNodes < 400:
+        NumNodes = 400
 
     # Desenhar uma pequena parte do grafo (cuidado para n explodir)
     subgrafo = G.subgraph(list(G.nodes())[:NumNodes])
