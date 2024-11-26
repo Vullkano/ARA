@@ -1,2 +1,4 @@
-# Ignorar a pasta venv (ou o nome da tua pasta de ambiente virtual)
 venv/
+env/
+.virtualenv/
+.idea/

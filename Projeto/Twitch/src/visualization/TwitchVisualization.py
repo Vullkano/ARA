@@ -116,6 +116,10 @@ def seeGraph(current_dir, edgePath, targetPath, PercNodes, country):
     # Criar diretórios necessários para salvar o gráfico
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    # Desativar o grid
+    plt.grid(False)
+    plt.gca().grid(False)
+
     # Salvar o gráfico como imagem PNG
     plt.savefig(output_path, bbox_inches='tight', transparent=False)
 
@@ -129,15 +133,14 @@ if __name__ == "__main__":
     while current_dir.name != "Twitch":
         current_dir = current_dir.parent
 
-    # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
-    country = "PTBR"
+    countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
+    for country in countries:
+        Filedges = "musae_" + country + "_edges.csv"
+        Filetarget = "musae_" + country + "_target.csv"
 
-    Filedges = "musae_" + country + "_edges.csv"
-    Filetarget = "musae_" + country + "_target.csv"
+        edgePath = current_dir / 'data' / country / Filedges
+        targetPath = current_dir / 'data' / country / Filetarget
 
-    edgePath = current_dir / 'data' / country / Filedges
-    targetPath = current_dir / 'data' / country / Filetarget
+        PercNodes = 15  # 40 -> 40% dos nodos da rede
 
-    PercNodes = 15  # 40 -> 40% dos nodos da rede
-
-    seeGraph(current_dir, edgePath, targetPath, PercNodes, country)
+        seeGraph(current_dir, edgePath, targetPath, PercNodes, country)
