@@ -60,6 +60,10 @@ def get_correlations(country:str, current_dir:pathlib.WindowsPath = Path.cwd()):
     # Ajustar layout
     plt.tight_layout()
 
+    # Desativar o grid
+    plt.grid(False)
+    plt.gca().grid(False)
+
     # Caminho para salvar a imagem
     output_path = output_dir / f"matriz_correlacao_{country}.png"
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='black')  # Melhor qualidade da imagem
@@ -71,7 +75,6 @@ def get_correlations(country:str, current_dir:pathlib.WindowsPath = Path.cwd()):
 
 
 if __name__ == "__main__":
-    # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
-    country = "ENGB"
-
-    get_correlations(country)
+    countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
+    for country in countries:
+        get_correlations(country)

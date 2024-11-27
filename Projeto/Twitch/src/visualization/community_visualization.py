@@ -82,13 +82,16 @@ def getCommunities(country:str, filter_mature:bool = False, filter_partner:bool 
     # Verificar se a pasta "Imagens" existe, caso contrário, criá-la
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    # Desativar o grid
+    plt.grid(False)
+    plt.gca().grid(False)
+
     # Salvar o gráfico como imagem PNG com fundo preto
     plt.savefig(output_path, bbox_inches='tight', transparent=False, facecolor='black')
 
     plt.show()
 
 if __name__ == "__main__":
-    # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
-    country = "ENGB"
-
-    getCommunities(country, filter_mature=True, filter_partner=True)
+    countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
+    for country in countries:
+        getCommunities(country, filter_mature=True, filter_partner=True)

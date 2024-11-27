@@ -62,6 +62,10 @@ def plot_pie_chart(df, column_name, country, output_dir):
             bbox=dict(boxstyle="round,pad=0.3", edgecolor="none", facecolor="white", alpha=0.8)
         )
 
+    # Desativar o grid
+    plt.grid(False)
+    plt.gca().grid(False)
+
     # Caminho para salvar o gráfico
     piechart_folder = create_subfolder('PieCharts', output_dir)  # Cria subpasta "PieCharts"
     plt.savefig(piechart_folder / f"{'PieChart - {column_name} ({country})'.replace(' ', '_')}_{country}.png")
