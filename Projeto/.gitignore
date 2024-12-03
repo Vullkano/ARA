@@ -1,0 +1,7 @@
+venv/
+env/
+.venv
+.virtualenv/
+.idea/
+__pycache__/
+.zip
