@@ -9,3 +9,4 @@ igraph>=0.10.2
 seaborn==0.13.2
 setuptools==75.1.0
 scikit-learn==1.5.2
+powerlaw

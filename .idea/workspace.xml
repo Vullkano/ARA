@@ -4,11 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d33c02c5-4815-4a78-b6f1-6148962c10b2" name="Changes" comment="" />
+    <list default="true" id="d33c02c5-4815-4a78-b6f1-6148962c10b2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Projeto/Twitch/src/data/0.getNewData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/DE/musae_DE_edges.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/DE/musae_DE_edges.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/DE/musae_DE_target.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/DE/musae_DE_target.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/ENGB/musae_ENGB_edges.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/ENGB/musae_ENGB_edges.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/ENGB/musae_ENGB_features.json" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/ENGB/musae_ENGB_features.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/ENGB/musae_ENGB_target.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/ENGB/musae_ENGB_target.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/ES/musae_ES_edges.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/ES/musae_ES_edges.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/ES/musae_ES_features.json" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/ES/musae_ES_features.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/ES/musae_ES_target.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/ES/musae_ES_target.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/FR/musae_FR_edges.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/FR/musae_FR_edges.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/FR/musae_FR_features.json" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/FR/musae_FR_features.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/FR/musae_FR_target.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/FR/musae_FR_target.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/PTBR/musae_PTBR_edges.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/PTBR/musae_PTBR_edges.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/PTBR/musae_PTBR_features.json" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/PTBR/musae_PTBR_features.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/PTBR/musae_PTBR_target.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/PTBR/musae_PTBR_target.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/RU/musae_RU_edges.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/RU/musae_RU_edges.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/RU/musae_RU_features.json" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/RU/musae_RU_features.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/RU/musae_RU_target.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/data/RU/musae_RU_target.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/data/Resultados/network_metrics_summary.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/docs/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/notebooks/CompararDiferentesRegioesTwitch.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/notebooks/DetailRegion.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/notebooks/EstudoIndividualRegiaoTwitch.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/notebooks/SeeAllRegion.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/src/data/1.global_network_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/src/data/1.allNodes&amp;regions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/src/data/2.AnalyzeTwitchNetworksNodesByCountry.py.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/src/data/2.studyRegion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto/Twitch/src/visualization/TwitchGraphs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto/Twitch/src/visualization/TwitchGraphs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -22,24 +60,97 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.AllGraphStudy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.TwitchGraphs.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/diogo/Desktop/ARA&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.0.AddNewData.executor": "Run",
+    "Python.1.global_network_analysis.executor": "Run",
+    "Python.AllGraphStudy.executor": "Run",
+    "Python.Apagar.executor": "Run",
+    "Python.TwitchGraphs.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/diogo/Desktop/programacao",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Python.TwitchGraphs">
+}]]></component>
+  <component name="RunManager" selected="Python.0.getNewData">
+    <configuration name="0.getNewData" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ARA" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Projeto/Twitch/src/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\diogo\Desktop\ARA\Projeto\Twitch\src\data\0.getNewData.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="1.allNodes&amp;regions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ARA" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Projeto/Twitch/src/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\diogo\Desktop\ARA\Projeto\Twitch\src\data\1.allNodes&amp;regions.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Apagar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ARA" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Projeto/Twitch/src/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Projeto/Twitch/src/data/Apagar.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="TwitchGraphs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ARA" />
       <option name="ENV_FILES" value="" />
@@ -49,12 +160,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Projeto/Twitch" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Projeto/Twitch/src/visualization" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Projeto/Twitch/TwitchGraphs.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Projeto/Twitch/src/visualization/TwitchGraphs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -88,8 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.0.getNewData" />
         <item itemvalue="Python.TwitchGraphs" />
-        <item itemvalue="Python.twitch_network_metrics_analysis" />
+        <item itemvalue="Python.Apagar" />
+        <item itemvalue="Python.1.allNodes&amp;regions" />
+        <item itemvalue="Python.TwitchGraphs" />
       </list>
     </recent_temporary>
   </component>
@@ -113,6 +227,12 @@
       <workItem from="1732555428207" duration="1895000" />
       <workItem from="1732557490594" duration="9816000" />
       <workItem from="1732725225979" duration="8273000" />
+      <workItem from="1732749957346" duration="4635000" />
+      <workItem from="1732823539942" duration="12105000" />
+      <workItem from="1732891836513" duration="15414000" />
+      <workItem from="1732984219044" duration="13170000" />
+      <workItem from="1733067030039" duration="4455000" />
+      <workItem from="1733154673312" duration="1797000" />
     </task>
     <servers />
   </component>
