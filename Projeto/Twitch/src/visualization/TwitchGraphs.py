@@ -55,7 +55,9 @@ def plot_broadcaster_distribution(df, country, output_dir):
     # Mostrar o gráfico
     plt.show()
     
-    save_plot(fig, 'broadcaster_distribution', country, output_dir, 'Ficheiro0')
+    folder = create_subfolder('NoteBook0', output_dir)
+    
+    save_plot(fig, 'broadcaster_distribution', country, folder, 'pie')
 
 def plot_game_categories(df, country, output_dir, top_n=25):
     """
@@ -104,8 +106,10 @@ def plot_game_categories(df, country, output_dir, top_n=25):
     
     # Mostrar o gráfico
     plt.show()
+
+    folder = create_subfolder('NoteBook0', output_dir)
     
-    save_plot(fig, 'game_categories', country, output_dir, 'Ficheiro0')
+    save_plot(fig, 'game_categories', country, folder, 'barplots')
 
 def plot_null_distribution(df, country, output_dir):
     """
@@ -163,7 +167,9 @@ def plot_null_distribution(df, country, output_dir):
     # Mostrar o gráfico
     plt.show()
     
-    save_plot(fig, 'null_distribution', country, output_dir, 'Ficheiro0')
+    folder = create_subfolder('NoteBook0', output_dir)
+    
+    save_plot(fig, 'null_distribution', country, folder, 'barplots')
 
 def plot_mature_content(df, country, output_dir):
     """
@@ -194,8 +200,10 @@ def plot_mature_content(df, country, output_dir):
     
     # Mostrar o gráfico
     plt.show()
+
+    folder = create_subfolder('NoteBook0', output_dir)
     
-    save_plot(fig, 'mature_content', country, output_dir, 'Ficheiro0')
+    save_plot(fig, 'mature_content', country, folder, 'pie')
 
 def create_subfolder(folder_name, output_dir):
     """Função para criar subpastas"""
