@@ -111,8 +111,8 @@ def getData(country: str, current_dir: pathlib.WindowsPath, CLIENT_ID: str, OAUT
 
 if __name__ == "__main__":
     # https://twitchtokengenerator.com/
-    CLIENT_ID = 'gp762nuuoqcoxypju8c569th9wz7q5'
-    OAUTH_TOKEN = 'e1b1lyolmag5m6rhgzsa8efwx9d7zq'
+    CLIENT_ID = 'Colocar ID'
+    OAUTH_TOKEN = 'Colocar Token'
 
     countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
     current_dir = Path.cwd()
