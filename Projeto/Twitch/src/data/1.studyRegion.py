@@ -4,8 +4,11 @@ import networkx as nx
 import pandas as pd
 from pathlib import Path
 import numpy as np
+import datetime
 
 def StudyEachCountry(country: str, current_dir: pathlib.WindowsPath) -> None:
+    print(f'\n# ===={country}==== #\n')
+    Start = datetime.datetime.now()
     # Lista de países disponíveis para análise
     countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
 
@@ -51,7 +54,7 @@ def StudyEachCountry(country: str, current_dir: pathlib.WindowsPath) -> None:
                       broadcaster_type=row['broadcaster_type'],  # Tipo de streamer
                       username=row['username'],  # Nome de usuário do streamer
                       created_at=row['created_at'],  # Data de criação da conta
-                      game=row['game'],  # Jogo que o streamer está a jogar
+                      game=row['game_name'],  # Jogo que o streamer está a jogar
                       mature=row['mature'],  # Se o conteúdo é classificado como maduro
                       days=row['days'],  # Dias desde a criação da conta
                       profile_pic=row['profile_pic'],  # URL da imagem de perfil do streamer
@@ -73,7 +76,6 @@ def StudyEachCountry(country: str, current_dir: pathlib.WindowsPath) -> None:
     betweenness_centrality = nx.betweenness_centrality(G_nx)  # Centralidade de intermediação
     eigenvector_centrality = nx.eigenvector_centrality(G_nx)  # Centralidade de vetor próprio
     pagerank_centrality = nx.pagerank(G_nx)  # Centralidade de PageRank
-    katz_centrality = nx.katz_centrality(G_nx)  # Centralidade de Katz
 
     # ==================== #
     # CÁLCULO DO GRAU DOS NÓS
@@ -102,7 +104,6 @@ def StudyEachCountry(country: str, current_dir: pathlib.WindowsPath) -> None:
         'betweenness_centrality': [betweenness_centrality[node] for node in G_nx.nodes],  # Centralidade de intermediação
         'eigenvector_centrality': [eigenvector_centrality[node] for node in G_nx.nodes],  # Centralidade de vetor próprio
         'pagerank_centrality': [pagerank_centrality[node] for node in G_nx.nodes],  # Centralidade de PageRank
-        'katz_centrality': [katz_centrality[node] for node in G_nx.nodes],  # Centralidade de Katz
         'views': [G_nx.nodes[node]['views'] for node in G_nx.nodes],  # Visualizações do streamer
         'partner': [G_nx.nodes[node]['partner'] for node in G_nx.nodes],  # Status de parceiro
         'mature': [G_nx.nodes[node]['mature'] for node in G_nx.nodes],  # Status de conteúdo maduro
@@ -118,8 +119,13 @@ def StudyEachCountry(country: str, current_dir: pathlib.WindowsPath) -> None:
     output_path_csv = current_dir / country / f"twitch_network_metrics_{country}.csv"
     df_metrics_sorted.to_csv(output_path_csv, index=False)
     print(f"Ficheiro CSV guardado em: {output_path_csv}")
+    print(f"Tempo Demorado: {Start - datetime.datetime.now()}\n")
 
 def DetectCommunities(country: str, current_dir: pathlib.WindowsPath) -> None:
+    print(f'\n# ===={country}==== #\n')
+    
+    Start = datetime.datetime.now()
+    
     # Lista de países disponíveis para análise
     countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
 
@@ -207,6 +213,7 @@ def DetectCommunities(country: str, current_dir: pathlib.WindowsPath) -> None:
     output_path_csv = current_dir / country / f"twitch_network_metrics_{country}_with_communities.csv"
     df_metrics.to_csv(output_path_csv, index=False)
     print(f"Ficheiro CSV com comunidades guardado em: {output_path_csv}")
+    print(f"Tempo Demorado: {Start - datetime.datetime.now()}\n")
 
 if __name__ == "__main__":
     # Diretório atual
@@ -215,4 +222,4 @@ if __name__ == "__main__":
     countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
     # Analisar cada país na lista
     for country in countries:
-        StudyEachCountry(country, current_dir)
+        DetectCommunities(country, current_dir)
