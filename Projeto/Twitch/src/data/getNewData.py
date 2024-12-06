@@ -67,6 +67,9 @@ def getData(country: str, current_dir: pathlib.WindowsPath, CLIENT_ID: str, OAUT
             channel_response.raise_for_status()
             channel_data = channel_response.json()
 
+            # TODO Só agr é que vi que existe -> content_classification_labels
+            print(channel_data)
+
             if channel_data['data']:
                 game_name = channel_data['data'][0].get('game_name', None)
             else:
@@ -103,16 +106,26 @@ def getData(country: str, current_dir: pathlib.WindowsPath, CLIENT_ID: str, OAUT
     })
 
     new_df = pd.merge(nodos_df, new_columns, on="id", how="left")
-
     NewFiletarget = "Raw_musae_" + country + "_target.csv"
-    newPath = current_dir_data / country / NewFiletarget
+
+    # Definir o nome da nova pasta
+    new_folder_name = "processed_data"
+
+    # Caminho para a nova pasta
+    newPath = current_dir_data / 'data' / country / new_folder_name / NewFiletarget
+
+    # Criar a nova pasta se ela não existir
+    newPath.mkdir(parents=True, exist_ok=True)
+
+    # Salvar o DataFrame limpo no novo diretório
     new_df.to_csv(newPath, index=False)
+    print(f"Dados salvos em: {newPath}")
 
 
 if __name__ == "__main__":
     # https://twitchtokengenerator.com/
-    CLIENT_ID = 'Colocar ID'
-    OAUTH_TOKEN = 'Colocar Token'
+    CLIENT_ID = 'gp762nuuoqcoxypju8c569th9wz7q5'
+    OAUTH_TOKEN = 'e1b1lyolmag5m6rhgzsa8efwx9d7zq'
 
     countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
     current_dir = Path.cwd()
