@@ -4,6 +4,7 @@ import seaborn as sns
 from pathlib import Path
 import numpy as np
 import powerlaw
+import matplotlib.patheffects as pe
 
 def setup_style():
     """Configuração global do estilo dos gráficos"""
@@ -126,7 +127,7 @@ def plot_null_distribution(df, country, output_dir):
     # Criar figura com resolução maior
     plt.figure(figsize=(12, 8), dpi=100)
     
-    # Criar o gráfico de barras
+    # Criar o grfico de barras
     ax = sns.barplot(
         x=null_counts.values,
         y=null_counts.index,
@@ -223,6 +224,409 @@ def save_plot(fig, name, country, output_dir, subfolder):
     plt.close(fig)
 
 ## ================ Ficheiro 1 ================ ##
+
+def plot_broadcaster_types_by_country(df, output_dir):
+    """
+    Cria um gráfico de barras empilhadas mostrando a distribuição dos tipos de broadcasters por país
+    
+    Args:
+        df (DataFrame): DataFrame com os dados do network_metrics_summary.csv
+        output_dir (Path): Diretório para salvar as imagens
+    """
+    plt.figure(figsize=(14, 8))
+    
+    # Definir esquema de cores elegante
+    colors = {
+        'Partner': '#FF6B6B',      # Rosa coral
+        'Affiliate': '#4ECDC4',    # Turquesa
+        'Account Deleted': '#45B7D1',  # Azul claro
+        'Non-Streamer': '#96CEB4'   # Verde menta
+    }
+    
+    # Criar as barras empilhadas
+    bottom = np.zeros(len(df))
+    
+    categories = [
+        ('Partner Broadcasters', 'Partner'),
+        ('Affiliate Broadcasters', 'Affiliate'),
+        ('Account Deleted Broadcasters', 'Account Deleted'),
+        ('Non-Streamer Broadcasters', 'Non-Streamer')
+    ]
+    
+    for col, category in categories:
+        values = df[col]
+        plt.bar(df['Country'], values, bottom=bottom, 
+                label=category, color=colors[category], 
+                alpha=0.8, width=0.7)
+        
+        # Adicionar valores no centro de cada barra com fundo
+        for i in range(len(df)):
+            if values[i] > 50:  # Só mostrar texto se a área for grande o suficiente
+                y_pos = bottom[i] + values[i]/2
+                plt.text(i, y_pos, f'{int(values[i]):,}',
+                        ha='center', va='center',
+                        fontweight='bold', fontsize=10,
+                        color='white',
+                        bbox=dict(
+                            facecolor='black',
+                            alpha=0.7,
+                            edgecolor='none',
+                            pad=3,
+                            boxstyle='round,pad=0.5'
+                        ))
+        bottom += values
+    
+    # Personalizar o gráfico com fundo no título
+    plt.title('Distribuição de Tipos de Broadcasters por País',
+              fontsize=20, pad=20, fontweight='bold',
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=10,
+                  boxstyle='round,pad=0.8'
+              ))
+    
+    # Labels dos eixos com fundo
+    plt.xlabel('País', 
+              fontsize=14, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
+    plt.ylabel('Número de Broadcasters', 
+              fontsize=14, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
+    # Adicionar grid suave
+    plt.grid(True, axis='y', alpha=0.2, linestyle='--')
+    
+    # Personalizar a legenda com fundo
+    legend = plt.legend(bbox_to_anchor=(1.05, 1), 
+                       loc='upper left',
+                       frameon=True, 
+                       facecolor='black',
+                       edgecolor='none', 
+                       fontsize=12)
+    legend.get_frame().set_alpha(0.7)
+    
+    # Ajustar os limites e rotação dos rótulos
+    plt.xticks(rotation=0, fontsize=12)
+    plt.yticks(fontsize=12)
+    
+    # Adicionar valores totais no topo com fundo
+    for i in range(len(df)):
+        total = bottom[i]
+        plt.text(i, total + (total * 0.02), f'Total: {int(total):,}',
+                ha='center', va='bottom',
+                fontweight='bold', fontsize=12,
+                color='white',
+                bbox=dict(
+                    facecolor='black',
+                    alpha=0.7,
+                    edgecolor='none',
+                    pad=3,
+                    boxstyle='round,pad=0.5'
+                ))
+    
+    # Remover as bordas
+    sns.despine()
+    
+    # Ajustar o layout
+    plt.tight_layout()
+    
+    # Guardar uma cópia da figura atual
+    fig = plt.gcf()
+    
+    # Mostrar o gráfico
+    plt.show()
+    
+    # Salvar o gráfico
+    folder = create_subfolder('NoteBook1', output_dir)
+    save_plot(fig, 'broadcaster_types_distribution', 'all_countries', folder, 'barplots')
+
+def plot_broadcaster_types_ribbon(df, output_dir):
+    """
+    Cria um ribbon plot (área empilhada) mostrando a distribuição dos tipos de broadcasters por país
+    
+    Args:
+        df (DataFrame): DataFrame com os dados do network_metrics_summary.csv
+        output_dir (Path): Diretório para salvar as imagens
+    """
+    plt.figure(figsize=(14, 8))
+    
+    # Definir esquema de cores elegante com gradientes
+    colors = {
+        'Partner': '#FF6B6B',      # Rosa coral
+        'Affiliate': '#4ECDC4',    # Turquesa
+        'Account Deleted': '#45B7D1',  # Azul claro
+        'Non-Streamer': '#96CEB4'   # Verde menta
+    }
+    
+    categories = [
+        ('Partner Broadcasters', 'Partner'),
+        ('Affiliate Broadcasters', 'Affiliate'),
+        ('Account Deleted Broadcasters', 'Account Deleted'),
+        ('Non-Streamer Broadcasters', 'Non-Streamer')
+    ]
+    
+    # Criar o ribbon plot
+    x = range(len(df))
+    bottom = np.zeros(len(df))
+    
+    for col, category in categories:
+        values = df[col].values
+        plt.fill_between(x, bottom, bottom + values,
+                        label=category,
+                        color=colors[category],
+                        alpha=0.8,
+                        linewidth=2,
+                        edgecolor='white')
+        
+        # Adicionar valores no centro de cada área com fundo
+        for i in range(len(df)):
+            if values[i] > 50:  # Só mostrar texto se a área for grande o suficiente
+                y_pos = bottom[i] + values[i]/2
+                plt.text(i, y_pos, f'{int(values[i]):,}',
+                        ha='center', va='center',
+                        fontweight='bold', fontsize=10,
+                        color='white',
+                        bbox=dict(
+                            facecolor='black',
+                            alpha=0.7,
+                            edgecolor='none',
+                            pad=3,
+                            boxstyle='round,pad=0.5'
+                        ))
+        
+        bottom += values
+    
+    # Personalizar o gráfico com fundo no título
+    plt.title('Distribuição de Tipos de Broadcasters por País',
+              fontsize=20, pad=20, fontweight='bold',
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=10,
+                  boxstyle='round,pad=0.8'
+              ))
+    
+    # Labels dos eixos com fundo
+    plt.xlabel('País', 
+              fontsize=14, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
+    plt.ylabel('Número de Broadcasters', 
+              fontsize=14, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
+    # Configurar eixo X
+    plt.xticks(x, df['Country'], rotation=0, fontsize=12)
+    plt.yticks(fontsize=12)
+    
+    # Adicionar grid suave
+    plt.grid(True, axis='y', alpha=0.2, linestyle='--', zorder=0)
+    
+    # Personalizar a legenda com fundo
+    legend = plt.legend(bbox_to_anchor=(1.05, 1), 
+                       loc='upper left',
+                       frameon=True, 
+                       facecolor='black',
+                       edgecolor='none', 
+                       fontsize=12)
+    legend.get_frame().set_alpha(0.7)
+    
+    # Adicionar valores totais no topo com fundo
+    for i in range(len(df)):
+        total = bottom[i]
+        plt.text(i, total + (total * 0.02), f'Total: {int(total):,}',
+                ha='center', va='bottom',
+                fontweight='bold', fontsize=12,
+                color='white',
+                bbox=dict(
+                    facecolor='black',
+                    alpha=0.7,
+                    edgecolor='none',
+                    pad=3,
+                    boxstyle='round,pad=0.5'
+                ))
+    
+    # Remover as bordas
+    sns.despine()
+    
+    # Ajustar o layout
+    plt.tight_layout()
+    
+    # Guardar uma cópia da figura atual
+    fig = plt.gcf()
+    
+    # Mostrar o gráfico
+    plt.show()
+    
+    # Salvar o gráfico
+    folder = create_subfolder('NoteBook1', output_dir)
+    save_plot(fig, 'broadcaster_types_ribbon', 'all_countries', folder, 'ribbonplots')
+
+def plot_mature_nodes_distribution(df, output_dir):
+    """
+    Cria um gráfico de barras empilhadas mostrando a distribuição de nodes mature/non-mature por país
+    
+    Args:
+        df (DataFrame): DataFrame com os dados do network_metrics_summary.csv
+        output_dir (Path): Diretório para salvar as imagens
+    """
+    plt.figure(figsize=(14, 8))
+    
+    # Cores mais vibrantes mas mantendo o esquema original
+    colors = {
+        'Mature': '#4A90E2',    # Azul mais vibrante
+        'Non-Mature': '#FF9F43' # Laranja mais vibrante
+    }
+    
+    # Plotar as barras empilhadas
+    plt.bar(df['Country'], df['Number of Mature Nodes'],
+            label='Mature Nodes', color=colors['Mature'],
+            alpha=0.8, width=0.7)
+    
+    plt.bar(df['Country'], df['Number of Non-Mature Nodes'],
+            bottom=df['Number of Mature Nodes'],
+            label='Non-Mature Nodes', color=colors['Non-Mature'],
+            alpha=0.8, width=0.7)
+    
+    # Adicionar valores em cada segmento
+    for i in range(len(df)):
+        # Valor para Mature
+        mature_value = df['Number of Mature Nodes'].iloc[i]
+        plt.text(i, mature_value/2, f'{int(mature_value):,}',
+                ha='center', va='center',
+                fontweight='bold', fontsize=10,
+                color='white',
+                bbox=dict(
+                    facecolor='black',
+                    alpha=0.7,
+                    edgecolor='none',
+                    pad=3,
+                    boxstyle='round,pad=0.5'
+                ))
+        
+        # Valor para Non-Mature
+        non_mature_value = df['Number of Non-Mature Nodes'].iloc[i]
+        plt.text(i, mature_value + non_mature_value/2,
+                f'{int(non_mature_value):,}',
+                ha='center', va='center',
+                fontweight='bold', fontsize=10,
+                color='white',
+                bbox=dict(
+                    facecolor='black',
+                    alpha=0.7,
+                    edgecolor='none',
+                    pad=3,
+                    boxstyle='round,pad=0.5'
+                ))
+        
+        # Total no topo
+        total = mature_value + non_mature_value
+        plt.text(i, total + (total * 0.02),
+                f'Total: {int(total):,}',
+                ha='center', va='bottom',
+                fontweight='bold', fontsize=12,
+                color='white',
+                bbox=dict(
+                    facecolor='black',
+                    alpha=0.7,
+                    edgecolor='none',
+                    pad=3,
+                    boxstyle='round,pad=0.5'
+                ))
+    
+    # Personalizar o gráfico com fundo no título
+    plt.title('Distribuição de Mature/Non-Mature Nodes por País',
+              fontsize=20, pad=20, fontweight='bold',
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=10,
+                  boxstyle='round,pad=0.8'
+              ))
+    
+    # Labels dos eixos com fundo
+    plt.xlabel('País', 
+              fontsize=14, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
+    plt.ylabel('Número de Nodes', 
+              fontsize=14, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
+    # Adicionar grid suave
+    plt.grid(True, axis='y', alpha=0.2, linestyle='--')
+    
+    # Personalizar a legenda com fundo
+    legend = plt.legend(bbox_to_anchor=(1.05, 1), 
+                       loc='upper left',
+                       frameon=True, 
+                       facecolor='black',
+                       edgecolor='none', 
+                       fontsize=12)
+    legend.get_frame().set_alpha(0.7)
+    
+    # Ajustar os limites e rotação dos rótulos
+    plt.xticks(rotation=0, fontsize=12)
+    plt.yticks(fontsize=12)
+    
+    # Remover as bordas
+    sns.despine()
+    
+    # Ajustar o layout
+    plt.tight_layout()
+    
+    # Guardar uma cópia da figura atual
+    fig = plt.gcf()
+    
+    # Mostrar o gráfico
+    plt.show()
+    
+    # Salvar o gráfico
+    folder = create_subfolder('NoteBook1', output_dir)
+    save_plot(fig, 'mature_nodes_distribution', 'all_countries', folder, 'barplots')
+
+## ================ Ficheiro 2 ================ ##
 # Função para criar subpastas para cada tipo de gráfico
 def create_subfolder(folder_name, output_dir):
     subfolder = output_dir / folder_name
