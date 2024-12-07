@@ -17,23 +17,33 @@ def seeGraph(current_dir, edgePath, targetPath, PercNodes, country):
         G.add_node(row['new_id'],
                    views=row['views'],
                    mature=row['mature'],
-                   partner=row['partner'],
+                   broadcaster_type=row['broadcaster_type'],
                    features=row.to_dict())  # Adiciona as características de cada nodo
 
     # Adicionar as arestas ao grafo
     for _, row in arestas_df.iterrows():
         G.add_edge(row['from'], row['to'])
 
-    # Visualizar o nº de nós e ligações
-    print("Número de nós:", G.number_of_nodes())
-    print("Número de arestas:", G.number_of_edges())
-
     NumNodes = int(G.number_of_nodes() * (PercNodes / 100))
-    if NumNodes < 400:
-        NumNodes = 400
 
-    # Desenhar uma pequena parte do grafo (cuidado para n explodir)
-    subgrafo = G.subgraph(list(G.nodes())[:NumNodes])
+    # Selecionar os nós baseado nas views (nós mais influentes)
+    node_views = [(node, G.nodes[node]['views']) for node in G.nodes()]
+    sorted_nodes = [node for node, views in sorted(node_views, key=lambda x: x[1], reverse=True)]
+    
+    # Criar subgrafo com os nós mais visualizados e seus vizinhos diretos
+    selected_nodes = sorted_nodes[:NumNodes]
+    neighbors = set()
+    for node in selected_nodes:
+        neighbors.update(G.neighbors(node))
+    
+    # Combinar os nós selecionados com alguns dos seus vizinhos
+    final_nodes = set(selected_nodes)
+    neighbor_list = list(neighbors - set(selected_nodes))
+    if neighbor_list:
+        additional_nodes = min(len(neighbor_list), NumNodes // 2)  # Adiciona até 50% mais nós
+        final_nodes.update(neighbor_list[:additional_nodes])
+    
+    subgrafo = G.subgraph(list(final_nodes))
 
     # Obter os valores de "views" para cada nodo no subgrafo
     views = [subgrafo.nodes[n]['views'] for n in subgrafo.nodes]
@@ -41,7 +51,7 @@ def seeGraph(current_dir, edgePath, targetPath, PercNodes, country):
     # Definir o tamanho dos nós com base nas views (normalizando)
     node_sizes = np.array(views)
     node_sizes = (node_sizes - min(node_sizes)) / (max(node_sizes) - min(node_sizes))
-    node_sizes = 50 + (node_sizes * 1000)  # Escalar os tamanhos (mínimo de 50 e máximo de 1050)
+    node_sizes = 100 + (node_sizes * 1500)  # Escalar os tamanhos (mínimo de 50 e máximo de 1050)
 
     # Ajustar o layout da rede para uma distribuição mais clara
     pos = nx.spring_layout(subgrafo, k=1, iterations=50, seed=42)  # Melhor ajuste do layout com seed
@@ -50,8 +60,31 @@ def seeGraph(current_dir, edgePath, targetPath, PercNodes, country):
     plt.figure(figsize=(20, 20), dpi=300)
     plt.style.use("dark_background")  # Background escuro para maior contraste
 
-    # Definir a cor dos nós com base no valor de "partner"
-    node_colors = ['#9146FF' if subgrafo.nodes[n]['partner'] else '#1E90FF' for n in subgrafo.nodes]
+    # Definir a cor dos nós com base no broadcaster_type
+    broadcaster_colors = {
+        'partner': '#9146FF',      # Roxo Twitch
+        'affiliate': '#00A9FF',    # Azul claro
+        'account_Deleted': '#E91916',  # Vermelho Twitch
+        'non_Streamer': '#1FE5B6',   # Verde Twitch
+    }
+    
+    # Mapear as cores para cada nó baseado no broadcaster_type
+    node_colors = []
+    for n in subgrafo.nodes:
+        broadcaster_type = subgrafo.nodes[n]['features'].get('broadcaster_type', '')
+        # Converter para lowercase para evitar problemas de case
+        broadcaster_type = broadcaster_type.lower()
+        
+        if broadcaster_type == 'partner':
+            color = broadcaster_colors['partner']
+        elif broadcaster_type == 'affiliate':
+            color = broadcaster_colors['affiliate']
+        elif broadcaster_type == 'account_deleted':
+            color = broadcaster_colors['account_Deleted']
+        elif broadcaster_type == 'non_streamer':
+            color = broadcaster_colors['non_Streamer']
+            
+        node_colors.append(color)
 
     # Separar os nós com base no valor de "mature"
     mature_nodes = [n for n in subgrafo.nodes if subgrafo.nodes[n]['mature'] == True]
@@ -82,7 +115,7 @@ def seeGraph(current_dir, edgePath, targetPath, PercNodes, country):
     # Desenhar as arestas com maior transparência
     nx.draw_networkx_edges(subgrafo, pos, alpha=0.2, edge_color='#A9A9A9')
 
-    # Adicionar legenda
+    # Criar as legendas
     legend_elements1 = [
         plt.Line2D([0], [0], marker='s', color='w', label='Mature (Quadrado)',
                    markersize=15, markeredgecolor='white'),
@@ -91,27 +124,31 @@ def seeGraph(current_dir, edgePath, targetPath, PercNodes, country):
     ]
 
     legend_elements2 = [
-        plt.Line2D([0], [0], marker='v', color='w', label='Partner (Roxo)',
+        plt.Line2D([0], [0], marker='v', color='w', label='Partner',
                    markerfacecolor='#9146FF', markersize=15, markeredgecolor='white'),
-        plt.Line2D([0], [0], marker='v', color='w', label='Non-Partner (Azul)',
-                   markerfacecolor='#1E90FF', markersize=15, markeredgecolor='white')
+        plt.Line2D([0], [0], marker='v', color='w', label='Affiliate',
+                   markerfacecolor='#00A9FF', markersize=15, markeredgecolor='white'),
+        plt.Line2D([0], [0], marker='v', color='w', label='Account Deleted',
+                   markerfacecolor='#E91916', markersize=15, markeredgecolor='white'),
+        plt.Line2D([0], [0], marker='v', color='w', label='Non-Streamer',
+                   markerfacecolor='#1FE5B6', markersize=15, markeredgecolor='white'),
     ]
 
     # Adicionar a primeira legenda (Mature/Non-Mature) no canto superior direito
     legend1 = plt.legend(handles=legend_elements1, loc='upper right', fontsize=12, title="Mature Status")
 
-    # Adicionar a segunda legenda (Partner/Non-Partner) logo abaixo da primeira, ajustando a posição com "bbox_to_anchor"
-    legend2 = plt.legend(handles=legend_elements2, loc='upper right', fontsize=12, title="Partner Status",
-                         bbox_to_anchor=(0.995, 0.94))  # Ajustar o valor de "0.85" para posicionar
+    # Adicionar a segunda legenda (Broadcaster Types) logo abaixo da primeira
+    legend2 = plt.legend(handles=legend_elements2, loc='upper right', fontsize=12, title="Broadcaster Type",
+                        bbox_to_anchor=(0.995, 0.94))
 
-    # Re-adicionar a primeira legenda (para não ser sobrescrita pela segunda)
+    # Re-adicionar a primeira legenda
     plt.gca().add_artist(legend1)
 
     # Título do gráfico
     plt.title(f"Subgrafo da Rede Twitch {country}", fontsize=24, color='white')
 
     # Caminho para salvar a imagem no diretório atual
-    output_path = current_dir / 'docs' / "Imagens" / 'Graph' / f"subgrafo_rede_twitch_{country}.png"
+    output_path = current_dir / 'docs' / "Imagens" / 'notebook1' / 'Graph' / f"subgrafo_rede_twitch_{country}.png"
 
     # Criar diretórios necessários para salvar o gráfico
     output_path.parent.mkdir(parents=True, exist_ok=True)
