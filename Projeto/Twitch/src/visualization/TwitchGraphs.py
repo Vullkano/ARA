@@ -19,6 +19,12 @@ def setup_style():
         'axes.grid': False
     })
 
+# Função para criar subpastas para cada tipo de gráfico
+def create_subfolder(folder_name, output_dir):
+    subfolder = output_dir / folder_name
+    subfolder.mkdir(exist_ok=True)
+    return subfolder
+
 ##### ======================== Ficheiro 0 ======================== #####
 
 def plot_broadcaster_distribution(df, country, output_dir):
@@ -627,101 +633,249 @@ def plot_mature_nodes_distribution(df, output_dir):
     save_plot(fig, 'mature_nodes_distribution', 'all_countries', folder, 'barplots')
 
 ## ================ Ficheiro 2 ================ ##
-# Função para criar subpastas para cada tipo de gráfico
-def create_subfolder(folder_name, output_dir):
-    subfolder = output_dir / folder_name
-    subfolder.mkdir(exist_ok=True)
-    return subfolder
 
-# Função para desenhar e salvar um histograma
-def plot_histogram(df, column_name, color, country, output_dir, log_scale=False):
+def plot_histogram(df, column_name, color, country, output_dir):
+    # Verificações iniciais...
+    if column_name not in df.columns:
+        raise ValueError(f"A coluna '{column_name}' não existe no dataframe.")
+    
+    if df[column_name].nunique() == 1:
+        raise ValueError(f"A coluna '{column_name}' tem valores constantes, o histograma pode não ser informativo.")
+
+    # Configurar o tamanho da figura
     plt.figure(figsize=(10, 6))
 
-    if log_scale:
-        sns.histplot(df[column_name], kde=True, color=color, bins=30, edgecolor='black',
-                     log_scale=(False, True))  # Escala logarítmica no eixo Y
-    else:
-        sns.histplot(df[column_name], kde=True, color=color, bins=30, edgecolor='black')  # Sem escala logarítmica
+    # Usar log scale no eixo X para distribuições muito enviesadas
+    plt.hist(df[column_name], bins=50, color=color, edgecolor='black', alpha=0.7,
+            density=True, log=True)
+    plt.xscale('log')  # Escala logarítmica no eixo X
+    
 
-    plt.title(f'Histograma - {column_name} ({country})')
-    plt.xlabel(column_name)
-    plt.ylabel('Frequência')
-    plt.grid(True)
+    # Configurar título e eixos
+    plt.title(f'Distribuição de {column_name} para {country}', fontsize=16)
+    plt.xlabel(f'{column_name} k', fontsize=14)
+    plt.ylabel('Fração de nós com grau k', fontsize=14)
+    plt.grid(True, alpha=0.3)
 
-    # Retira a notação científica apenas se a escala não for logarítmica
-    if not log_scale:
-        plt.ticklabel_format(style='plain', axis='y')
+    # Ajustar layout
+    plt.tight_layout()
 
-    # Adiciona linha média
-    mean_value = df[column_name].mean()
-    plt.axvline(mean_value, color='red', linestyle='dashed', linewidth=1)
-    plt.text(mean_value + 0.5, 5, f'Média: {mean_value:.2f}', color='red')
-
-    # Caminho para salvar o gráfico
-    hist_folder = create_subfolder('Histograms', output_dir)
-    filename = f"Histogram_{column_name.replace(' ', '_')}_{country}.png"
-    plt.savefig(hist_folder / filename)
+    # Salvar o gráfico
+    folder = create_subfolder('NoteBook2', output_dir)
+    hist_folder = create_subfolder('LogHistograms', folder)
+    filename = f"LogHistogram_{column_name.replace(' ', '_')}_{country}.png"
+    plt.savefig(hist_folder / filename, bbox_inches='tight', dpi=300)
     plt.show()
 
 
-# Função para desenhar e salvar um gráfico circular (pie chart)
 def plot_pie_chart(df, column_name, country, output_dir):
-    plt.figure(figsize=(8, 8))
+    """
+    Cria um gráfico circular (donut chart) estilizado para visualizar a distribuição de uma variável categórica.
+    """
+    plt.figure(figsize=(10, 10))
+    
+    # Obter dados e ordenar por frequência
     data = df[column_name].value_counts()
-    # Gráfico de rosca
+    print(data)
+    
+    # Limitar a 10 categorias mais frequentes para melhor visualização
+    if len(data) > 10:
+        outros = pd.Series({'Outros': data[10:].sum()})
+        data = pd.concat([data[:10], outros])
+    
+    # Cores personalizadas mais vibrantes
+    colors = sns.color_palette('Set2', n_colors=len(data))
+    
+    # Criar o gráfico de rosca com sombra
     wedges, texts, autotexts = plt.pie(
         data,
         labels=data.index,
         autopct='%1.1f%%',
         startangle=90,
-        colors=sns.color_palette('Paired'),
-        wedgeprops={'width': 0.4}
+        colors=colors,
+        wedgeprops={
+            'width': 0.5,  # Largura da rosca
+            'edgecolor': 'black',  # Borda branca
+            'linewidth': 3,  # Espessura da borda
+        },
+        textprops={
+            'fontsize': 11, 
+            'weight': 'bold',
+            'bbox': {
+                'facecolor': 'black',
+                'edgecolor': 'none',
+                'alpha': 0.7,
+                'pad': 3,
+                'boxstyle': 'round,pad=0.3'
+            }
+        },
+        pctdistance=0.85
     )
-
-    plt.title(f'Donut Chart - {column_name} ({country})', fontsize=18)
-    plt.axis('equal')  # Mantém a proporção circular
-
-    # Adicionar anotações com o número total no centro das fatias
+    
+    # Estilizar as porcentagens
+    plt.setp(autotexts, size=10, weight="bold", color="white",
+             bbox=dict(facecolor='black', edgecolor='none', alpha=0.7, pad=3, boxstyle='round,pad=0.3'))
+    
+    # Adicionar título com estilo
+    plt.title(f'Distribuição de {column_name}\n{country}', 
+              fontsize=20, 
+              pad=20, 
+              fontweight='bold',
+              bbox={
+                  'facecolor': 'black',
+                  'edgecolor': 'none',
+                  'alpha': 0.7,
+                  'pad': 10,
+                  'boxstyle': 'round,pad=0.8'
+              })
+    
+    # Adicionar valores absolutos no centro das fatias
     for wedge, value in zip(wedges, data):
-        angle = (wedge.theta2 + wedge.theta1) / 2  # Ângulo médio da fatia
-        x = np.cos(np.deg2rad(angle)) * 0.7  # Ajuste do raio
-        y = np.sin(np.deg2rad(angle)) * 0.7
-
+        angle = (wedge.theta2 + wedge.theta1) / 2
+        x = np.cos(np.deg2rad(angle)) * 0.65  # Ajuste do raio
+        y = np.sin(np.deg2rad(angle)) * 0.65
+        
+        # Adicionar valor com fundo
         plt.text(
-            x, y, str(value),
-            color='black', fontsize=12, fontweight='bold', ha='center', va='center',
-            bbox=dict(boxstyle="round,pad=0.3", edgecolor="none", facecolor="white", alpha=0.8)
+            x, y, f'{value:,}',  # Formatar número com separador de milhares
+            ha='center', 
+            va='center',
+            fontsize=10,
+            fontweight='bold',
+            color='white',
+            bbox={
+                'facecolor': 'black',
+                'edgecolor': 'none',
+                'alpha': 0.7,
+                'pad': 3,
+                'boxstyle': 'round,pad=0.3'
+            }
         )
-
-    # Desativar o grid
-    plt.grid(False)
-    plt.gca().grid(False)
-
-    # Caminho para salvar o gráfico
-    piechart_folder = create_subfolder('PieCharts', output_dir)  # Cria subpasta "PieCharts"
-    plt.savefig(piechart_folder / f"{'PieChart - {column_name} ({country})'.replace(' ', '_')}_{country}.png")
+    
+    # Adicionar círculo central para efeito visual
+    centre_circle = plt.Circle((0, 0), 0.40, fc='black')
+    plt.gca().add_artist(centre_circle)
+    
+    # Adicionar valor total no centro
+    plt.text(0, 0, f'Total:\n{data.sum():,}',
+             ha='center',
+             va='center',
+             fontsize=14,
+             fontweight='bold')
+    
+    # Manter proporção circular
+    plt.axis('equal')
+    
+    # Ajustar layout
+    plt.tight_layout()
+    
+    # Salvar o gráfico
+    folder = create_subfolder('NoteBook2', output_dir)
+    piechart_folder = create_subfolder('PieCharts', folder)
+    filename = f"PieChart_{column_name.replace(' ', '_')}_{country}.png"
+    plt.savefig(piechart_folder / filename, 
+                bbox_inches='tight',
+                dpi=300,
+                facecolor='white',
+                edgecolor='none')
+    
     plt.show()
 
 
-def detect_power_law(data, column_name):
+def detect_power_law(data, column_name, country, output_dir):
+    """
+    Deteta e visualiza a lei de potência para uma determinada coluna de dados.
+    
+    Args:
+        data (DataFrame): DataFrame com os dados
+        column_name (str): Nome da coluna a analisar
+        country (str): País dos dados
+        output_dir (Path): Diretório base para salvar as imagens
+    """
     # Ajustar os dados a uma lei de potência
     results = powerlaw.Fit(data[column_name], xmin=1)  # xmin define o limite inferior
     alpha = results.power_law.alpha  # Expoente da lei de potência
     xmin = results.power_law.xmin  # Valor mínimo usado no ajuste
 
-    # Visualizar os dados e o ajuste
+    # Configurar a figura
     plt.figure(figsize=(10, 6))
     results.plot_pdf(color='b', linewidth=2, label="Dados Observados")
     results.power_law.plot_pdf(color='r', linestyle='--', label=f"Lei de Potência (α = {alpha:.2f})")
-    plt.xlabel(column_name)
-    plt.ylabel("Probabilidade")
-    plt.title(f"Distribuição e Ajuste de Lei de Potência para {column_name}")
-    plt.legend()
-    plt.grid(True)
+    
+    # Configurar labels e título
+    plt.xlabel(column_name, fontsize=14)
+    plt.ylabel("Probabilidade", fontsize=14)
+    plt.title(f"Distribuição e Ajuste de Lei de Potência para {column_name}", fontsize=16)
+    plt.legend(fontsize=12)
+    plt.grid(True, alpha=0.3)
+    
+    # Ajustar layout
+    plt.tight_layout()
+
+    # Criar diretórios necessários
+    notebook2_folder = create_subfolder('NoteBook2', output_dir)
+    powerlaw_folder = create_subfolder('PowerLaw', notebook2_folder)
+    
+    # Salvar o gráfico
+    filename = f"PowerLaw_{column_name.replace(' ', '_')}_{country}.png"
+    plt.savefig(powerlaw_folder / filename, bbox_inches='tight', dpi=300)
+    
+    # Mostrar o gráfico
     plt.show()
 
     # Retornar os resultados
     return alpha, xmin
+
+def plot_community_distribution(df, column_name, community_column, country, output_dir):
+    """
+    Cria um gráfico de barras empilhadas mostrando a distribuição de uma coluna por comunidade.
+    
+    Args:
+        df (DataFrame): DataFrame com os dados
+        column_name (str): Nome da coluna a analisar ('game_name', 'mature', etc)
+        community_column (str): Nome da coluna de comunidade ('louvain_community' ou 'lp_community')
+        country (str): País dos dados
+        output_dir (Path): Diretório para salvar as imagens
+    """
+    plt.figure(figsize=(15, 8))
+    
+    # Criar tabela de contingência
+    cross_tab = pd.crosstab(df[community_column], df[column_name])
+    
+    # Se houver muitas categorias, pegar apenas as top N mais frequentes
+    if cross_tab.shape[1] > 10:
+        top_categories = df[column_name].value_counts().nlargest(10).index
+        cross_tab = cross_tab[top_categories]
+    
+    # Plotar gráfico de barras empilhadas
+    cross_tab.plot(kind='bar', stacked=True)
+    
+    plt.title(f'Distribuição de {column_name} por {community_column}\n{country}',
+              fontsize=16, pad=20)
+    plt.xlabel('Comunidade', fontsize=12)
+    plt.ylabel('Quantidade', fontsize=12)
+    
+    # Rotacionar labels do eixo x
+    plt.xticks(rotation=45, ha='right')
+    
+    # Ajustar legenda
+    plt.legend(title=column_name, bbox_to_anchor=(1.05, 1), loc='upper left')
+    
+    # Adicionar grid
+    plt.grid(True, alpha=0.3)
+    
+    # Ajustar layout
+    plt.tight_layout()
+    
+    # Salvar o gráfico
+    folder = create_subfolder('NoteBook2', output_dir)
+    dist_folder = create_subfolder('CommunityDistribution', folder)
+    filename = f"Distribution_{column_name}_{community_column}_{country}.png"
+    plt.savefig(dist_folder / filename, 
+                bbox_inches='tight',
+                dpi=300)
+    
+    plt.show()
 
 if __name__ == "__main__":
     # Escolher entre: DE, ENGB, ES, FR, PTBR, RU

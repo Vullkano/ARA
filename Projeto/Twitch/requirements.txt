@@ -12,3 +12,4 @@ scikit-learn==1.5.2
 powerlaw
 tqdm
 colorama
+requests
