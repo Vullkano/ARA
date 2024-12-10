@@ -877,6 +877,107 @@ def plot_community_distribution(df, column_name, community_column, country, outp
     
     plt.show()
 
+def plot_circular_distribution(df, country, output_dir):
+    """
+    Cria um círculo trigonométrico estilizado mostrando a distribuição temporal dos usuários.
+
+    Args:
+        df (DataFrame): DataFrame com os dados
+        country (str): País sendo analisado
+        output_dir (Path): Diretório para salvar as imagens
+    """
+    # Criar figura com fundo escuro
+    plt.style.use('dark_background')
+    fig = plt.figure(figsize=(15, 15))
+    ax = fig.add_subplot(111, projection='polar')
+
+    # Configurar o grid circular
+    ax.grid(True, alpha=0.2)
+
+    # Plotar o círculo unitário
+    circle = plt.Circle((0, 0), 1, fill=False, color='white', alpha=0.3, linestyle='--')
+    ax.add_artist(circle)
+
+    # Plotar os pontos com gradiente de cor baseado na data
+    scatter = ax.scatter(df['normalized_day'],
+                        np.ones(len(df)),
+                        c=df['day_of_year'],
+                        cmap='viridis',
+                        alpha=0.6,
+                        s=50)
+
+    # Adicionar barra de cores
+    cbar = plt.colorbar(scatter)
+    cbar.set_label('Dia do Ano', fontsize=12)
+
+    # Adicionar labels dos meses
+    months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+    angles = np.linspace(0, 2*np.pi, 12, endpoint=False)
+
+    # Ajustar a posição dos labels dos meses
+    for angle, month in zip(angles, months):
+        ax.text(angle, 1.2,
+                month,
+                ha='center',
+                va='center',
+                fontsize=12,
+                fontweight='bold',
+                bbox=dict(facecolor='black',
+                            edgecolor='white',
+                            alpha=0.7,
+                            pad=3,
+                            boxstyle='round,pad=0.5'))
+
+    # Adicionar linhas para cada mês
+    for angle in angles:
+        ax.plot([angle, angle], [0, 1.1], 
+                color='white',
+                alpha=0.2,
+                linestyle='--')
+
+    # Configurar os limites e remover labels dos eixos
+    ax.set_ylim(0, 1.3)
+    ax.set_rticks([])
+
+    # Adicionar título
+    plt.title(f'Distribuição Circular de Criação de Contas - {country}',
+                pad=20,
+                fontsize=16,
+                fontweight='bold',
+                bbox=dict(facecolor='black',
+                        edgecolor='white',
+                        alpha=0.7,
+                        pad=5,
+                        boxstyle='round,pad=0.5'))
+
+    # Adicionar anotações com estatísticas
+    total_users = len(df)
+    plt.figtext(0.02, 0.02,
+                f'Total de Usuários: {total_users:,}',
+                fontsize=12,
+                color='white',
+                bbox=dict(facecolor='black',
+                            edgecolor='white',
+                            alpha=0.7,
+                            pad=5,
+                            boxstyle='round,pad=0.5'))
+
+    # Criar pasta e salvar
+    folder = create_subfolder('NoteBook2', output_dir)
+    circular_folder = create_subfolder('CircularDistribution', folder)
+    plt.savefig(circular_folder / f'circular_distribution_{country}.png',
+                dpi=300,
+                bbox_inches='tight',
+                facecolor='black',
+                edgecolor='none')
+    
+    # Mostrar o gráfico
+    plt.show()
+    
+    # Fechar a figura
+    plt.close()
+
 if __name__ == "__main__":
     # Escolher entre: DE, ENGB, ES, FR, PTBR, RU
     country = "PTBR"
