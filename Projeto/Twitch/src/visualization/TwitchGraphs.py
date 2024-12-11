@@ -793,7 +793,7 @@ def detect_power_law(data, column_name, country, output_dir):
         output_dir (Path): Diretório base para salvar as imagens
     """
     # Ajustar os dados a uma lei de potência
-    results = powerlaw.Fit(data[column_name], xmin=1)  # xmin define o limite inferior
+    results = powerlaw.Fit(data[column_name])  # xmin define o limite inferior
     alpha = results.power_law.alpha  # Expoente da lei de potência
     xmin = results.power_law.xmin  # Valor mínimo usado no ajuste
 
@@ -879,7 +879,7 @@ def plot_community_distribution(df, column_name, community_column, country, outp
 
 def plot_circular_distribution(df, country, output_dir):
     """
-    Cria um círculo trigonométrico estilizado mostrando a distribuição temporal dos usuários.
+    Cria um círculo trigonométrico estilizado mostrando a distribuição temporal dos utilizadores.
 
     Args:
         df (DataFrame): DataFrame com os dados
@@ -954,7 +954,7 @@ def plot_circular_distribution(df, country, output_dir):
     # Adicionar anotações com estatísticas
     total_users = len(df)
     plt.figtext(0.02, 0.02,
-                f'Total de Usuários: {total_users:,}',
+                f'Total de utilizadores: {total_users:,}',
                 fontsize=12,
                 color='white',
                 bbox=dict(facecolor='black',

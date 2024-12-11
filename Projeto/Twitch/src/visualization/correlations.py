@@ -6,6 +6,8 @@ from scipy import stats
 from pathlib import Path
 from scipy.stats import f_oneway
 from scipy.stats import chi2_contingency
+import matplotlib.patheffects as pe
+import powerlaw
 
 def calculate_correlations(df, country, output_dir):
     """
@@ -67,7 +69,7 @@ def calculate_correlations(df, country, output_dir):
                 print(f"Erro no cálculo ETA para {cat_col} e {num_col}: {str(e)}")
                 continue
     
-    # 5. V de Cramér (entre variáveis categóricas)
+    # 5. V de Cramér e Coeficiente de Contingência de Pearson
     for cat1 in categorical_cols:
         for cat2 in categorical_cols:
             if cat1 < cat2:  # Evita calcular correlações duplicadas
@@ -83,13 +85,17 @@ def calculate_correlations(df, country, output_dir):
                     min_dim = min(len(df[cat1].unique()), len(df[cat2].unique())) - 1
                     cramer_v = np.sqrt(chi2 / (n * min_dim)) if min_dim > 0 else 0
                     
+                    # Calcular Coeficiente de Contingência de Pearson
+                    pearson_c = np.sqrt(chi2 / (chi2 + n))
+                    
                     correlations['cramer'][(cat1, cat2)] = {
                         'cramer_v': cramer_v,
+                        'pearson_c': pearson_c,
                         'p_value': p_value
                     }
                     
                 except Exception as e:
-                    print(f"Erro no cálculo V de Cramér para {cat1} e {cat2}: {str(e)}")
+                    print(f"Erro no cálculo para {cat1} e {cat2}: {str(e)}")
                     continue
     
     # Criar visualizações
@@ -101,7 +107,7 @@ def plot_correlations(correlations, country, output_dir):
     """
     Cria visualizações estilizadas para as diferentes correlações.
     """
-    # Configurar estilo
+    # Configurar estilo geral
     plt.style.use('dark_background')
     
     # Criar pastas
@@ -115,68 +121,102 @@ def plot_correlations(correlations, country, output_dir):
     
     for dir_path in [pearson_dir, spearman_dir, eta_dir, cramer_dir]:
         dir_path.mkdir(exist_ok=True)
-    
-    # 1. Heatmap para Pearson
+
+    # Pearson e Spearman
     plt.figure(figsize=(15, 10))
     
-    # Criar máscaras para triangulos superior e inferior
-    mask_lower = np.tril(np.ones_like(correlations['pearson']))
-    mask_upper = np.triu(np.ones_like(correlations['pearson']), k=1)
+    # Garantir que a diagonal é NaN
+    pearson_matrix = correlations['pearson'].copy()
+    spearman_matrix = correlations['spearman'].copy()
+    np.fill_diagonal(pearson_matrix.values, np.nan)
+    np.fill_diagonal(spearman_matrix.values, np.nan)
     
-    # Plot do triângulo inferior com heatmap
-    sns.heatmap(correlations['pearson'],
-                mask=mask_upper,
+    # Criar máscaras para os triângulos
+    mask_lower = np.triu(np.ones_like(pearson_matrix), k=1)
+    mask_upper = np.tril(np.ones_like(spearman_matrix), k=-1)
+    
+    # Plot do triângulo inferior (Pearson)
+    sns.heatmap(pearson_matrix,
+                mask=mask_lower,
                 annot=True,
-                cmap='coolwarm',
-                center=0,
+                cmap='RdYlBu_r',
+                vmin=-1,
+                vmax=1,
                 fmt='.2f',
                 square=True,
                 linewidths=1,
-                cbar_kws={"shrink": .8},
-                annot_kws={"size": 8})
+                cbar=True,
+                cbar_kws={
+                    "shrink": .8,
+                    "label": "Coeficiente de Correlação",
+                    "orientation": "vertical"
+                },
+                annot_kws={
+                    "size": 8,
+                    "color": "black"
+                })
     
-    # Plot do triângulo superior com padrão
-    ax = plt.gca()
-    for i in range(len(correlations['pearson'])):
-        for j in range(i+1, len(correlations['pearson'])):
-            ax.add_patch(plt.Rectangle((i, j), 1, 1, 
-                                     fill=True,
-                                     facecolor='gray',
-                                     alpha=0.5))
-    
-    plt.title(f'Correlação de Pearson - {country}', fontsize=16, pad=20)
-    plt.tight_layout()
-    plt.savefig(pearson_dir / f'pearson_corr_{country}.png', dpi=300, bbox_inches='tight')
-    plt.show()
-    plt.close()
-    
-    # 2. Heatmap para Spearman
-    plt.figure(figsize=(15, 10))
-    
-    # Plot do triângulo inferior com heatmap
-    sns.heatmap(correlations['spearman'],
+    # Plot do triângulo superior (Spearman)
+    sns.heatmap(spearman_matrix,
                 mask=mask_upper,
                 annot=True,
-                cmap='coolwarm',
-                center=0,
+                cmap='RdYlBu_r',
+                vmin=-1,
+                vmax=1,
                 fmt='.2f',
                 square=True,
                 linewidths=1,
-                cbar_kws={"shrink": .8},
-                annot_kws={"size": 8})
+                cbar=False,
+                annot_kws={
+                    "size": 8,
+                    "color": "black"
+                })
     
-    # Plot do triângulo superior com padrão diferente
-    ax = plt.gca()
-    for i in range(len(correlations['spearman'])):
-        for j in range(i+1, len(correlations['spearman'])):
-            ax.add_patch(plt.Rectangle((i, j), 1, 1, 
-                                     fill=True,
-                                     facecolor='gray',
-                                     alpha=0.5))
+    # Adicionar uma linha preta na diagonal
+    for i in range(len(pearson_matrix)):
+        plt.plot([i, i+1], [i, i+1], 'k-', linewidth=2)
     
-    plt.title(f'Correlação de Spearman - {country}', fontsize=16, pad=20)
+    plt.title(f'Correlações de Pearson (inferior) e Spearman (superior)\n{country}',
+              fontsize=16, pad=20, fontweight='bold',
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=10,
+                  boxstyle='round,pad=0.8'
+              ))
+    
+    # Rotacionar e alinhar os labels dos eixos
+    plt.xticks(rotation=45, ha='right')
+    plt.yticks(rotation=0)
+    
+    # Labels dos eixos com fundo preto
+    plt.xlabel('Variáveis', 
+              fontsize=12, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
+    plt.ylabel('Variáveis', 
+              fontsize=12, labelpad=10,
+              bbox=dict(
+                  facecolor='black',
+                  alpha=0.7,
+                  edgecolor='none',
+                  pad=5,
+                  boxstyle='round,pad=0.5'
+              ))
+    
     plt.tight_layout()
-    plt.savefig(spearman_dir / f'spearman_corr_{country}.png', dpi=300, bbox_inches='tight')
+    plt.savefig(pearson_dir / f'pearson_spearman_corr_{country}.png',
+                dpi=300,
+                bbox_inches='tight',
+                facecolor='black',
+                edgecolor='none')
     plt.show()
     plt.close()
     
@@ -243,24 +283,36 @@ def plot_correlations(correlations, country, output_dir):
     plt.show()
     plt.close()
     
-    # 4. V de Cramér
+    # 4. V de Cramér e Coeficiente de Contingência
     if correlations['cramer']:
         plt.figure(figsize=(12, 8))
         
-        # Criar matriz de correlação para V de Cramér
+        # Criar matrizes para ambos os coeficientes
         cat_vars = sorted(list(set([cat for pair in correlations['cramer'].keys() for cat in pair])))
         cramer_matrix = pd.DataFrame(0.0, index=cat_vars, columns=cat_vars)
+        contingency_matrix = pd.DataFrame(0.0, index=cat_vars, columns=cat_vars)
         
         for (cat1, cat2), values in correlations['cramer'].items():
-            cramer_matrix.loc[cat1, cat2] = float(values['cramer_v'])
-            cramer_matrix.loc[cat2, cat1] = float(values['cramer_v'])
+            cramer_v = float(values['cramer_v'])
+            pearson_c = float(values['pearson_c'])
+            
+            # Preencher matriz V de Cramér (triângulo inferior)
+            cramer_matrix.loc[cat2, cat1] = cramer_v
+            
+            # Preencher matriz Coeficiente de Contingência (triângulo superior)
+            contingency_matrix.loc[cat1, cat2] = pearson_c
         
-        # Mascarar triângulo superior
-        mask = np.triu(np.ones_like(cramer_matrix), k=0)
+        # Definir diagonal como NaN
+        np.fill_diagonal(cramer_matrix.values, np.nan)
+        np.fill_diagonal(contingency_matrix.values, np.nan)
         
-        # Plot heatmap
+        # Combinar as matrizes
+        mask_lower = np.triu(np.ones_like(cramer_matrix), k=1)
+        mask_upper = np.tril(np.ones_like(contingency_matrix), k=-1)
+        
+        # Plot do triângulo inferior (V de Cramér)
         sns.heatmap(cramer_matrix,
-                    mask=mask,
+                    mask=mask_lower,
                     annot=True,
                     cmap='YlOrRd',
                     vmin=0,
@@ -268,12 +320,76 @@ def plot_correlations(correlations, country, output_dir):
                     fmt='.2f',
                     square=True,
                     linewidths=1,
-                    cbar_kws={"shrink": .8},
-                    annot_kws={"size": 8})
+                    cbar_kws={
+                        "shrink": .8,
+                        "label": "Coeficiente"
+                    },
+                    annot_kws={
+                        "size": 8,
+                        "color": "black"
+                    })
         
-        plt.title(f'Correlações V de Cramér - {country}', fontsize=16, pad=20)
+        # Plot do triângulo superior (Coeficiente de Contingência)
+        sns.heatmap(contingency_matrix,
+                    mask=mask_upper,
+                    annot=True,
+                    cmap='YlOrRd',
+                    vmin=0,
+                    vmax=1,
+                    fmt='.2f',
+                    square=True,
+                    linewidths=1,
+                    cbar=False,
+                    annot_kws={
+                        "size": 8,
+                        "color": "black"
+                    })
+        
+        # Adicionar uma linha preta na diagonal
+        for i in range(len(cat_vars)):
+            plt.plot([i, i+1], [i, i+1], 'k-', linewidth=2)
+        
+        plt.title(f'V de Cramér (inferior) e\nCoeficiente de Contingência (superior) - {country}',
+                  fontsize=16, pad=20, fontweight='bold',
+                  bbox=dict(
+                      facecolor='black',
+                      alpha=0.7,
+                      edgecolor='none',
+                      pad=10,
+                      boxstyle='round,pad=0.8'
+                  ))
+        
+        # Rotacionar e alinhar os labels dos eixos
+        plt.xticks(rotation=45, ha='right')
+        plt.yticks(rotation=0)
+        
+        # Labels dos eixos com fundo preto
+        plt.xlabel('Variáveis', 
+                  fontsize=12, labelpad=10,
+                  bbox=dict(
+                      facecolor='black',
+                      alpha=0.7,
+                      edgecolor='none',
+                      pad=5,
+                      boxstyle='round,pad=0.5'
+                  ))
+        
+        plt.ylabel('Variáveis', 
+                  fontsize=12, labelpad=10,
+                  bbox=dict(
+                      facecolor='black',
+                      alpha=0.7,
+                      edgecolor='none',
+                      pad=5,
+                      boxstyle='round,pad=0.5'
+                  ))
+        
         plt.tight_layout()
-        plt.savefig(cramer_dir / f'cramer_corr_{country}.png', dpi=300, bbox_inches='tight')
+        plt.savefig(cramer_dir / f'cramer_contingency_corr_{country}.png',
+                    dpi=300,
+                    bbox_inches='tight',
+                    facecolor='black',
+                    edgecolor='none')
         plt.show()
         plt.close()
 
