@@ -251,14 +251,25 @@ def plot_correlations(correlations, country, output_dir):
                       label=num,
                       alpha=0.7)
         
-        # Adicionar rótulos nas barras
+        # Adicionar rótulos nas barras com melhor visibilidade
         for bar in bars:
             height = bar.get_height()
             if height > 0:  # Só mostrar rótulo se houver valor
                 plt.text(bar.get_x() + bar.get_width()/2., height,
                         f'{height:.2f}',
-                        ha='center', va='bottom',
-                        fontsize=8)
+                        ha='center', 
+                        va='bottom',
+                        fontsize=7,            # Aumentado tamanho da fonte
+                        fontweight='bold',      # Negritoa
+                        color='white',          # Cor branca
+                        rotation=90,            # Rotação do texto
+                        bbox=dict(              # Adicionar caixa de fundo
+                            facecolor='black',  # Fundo preto
+                            edgecolor='white',  # Borda branca
+                            alpha=0.7,          # Semi-transparente
+                            pad=1,              # Padding
+                            boxstyle='round,pad=0.5'  # Estilo arredondado
+                        ))
     
     # Configurar eixos e legendas
     plt.title(f'Correlações ETA - {country}', fontsize=16, pad=20)
@@ -268,11 +279,19 @@ def plot_correlations(correlations, country, output_dir):
     # Ajustar labels do eixo X
     plt.xticks(x, categories, rotation=45, ha='right')
     
-    # Ajustar legenda
+    # Ajustar legenda com melhor visibilidade
     plt.legend(title='Variáveis Numéricas', 
               bbox_to_anchor=(1.05, 1), 
               loc='upper left',
-              title_fontsize=10)
+              title_fontsize=12,
+              fontsize=12,
+              labelcolor='white',     # Cor do texto da legenda
+              edgecolor='white',      # Cor da borda da legenda
+              framealpha=0.0)         # Transparência do fundo da legenda
+    
+    # Mudar a cor do título da legenda para branco também
+    legend = plt.gca().get_legend()
+    legend.get_title().set_color('white')
     
     # Adicionar grid e ajustar layout
     plt.grid(True, alpha=0.2)

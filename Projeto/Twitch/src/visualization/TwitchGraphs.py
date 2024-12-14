@@ -231,6 +231,101 @@ def save_plot(fig, name, country, output_dir, subfolder):
 
 ## ================ Ficheiro 1 ================ ##
 
+def count_null_usernames(countries, directory):
+    """
+    Conta a quantidade de usernames nulos em cada ficheiro Raw_musae_{country}_target.csv
+    
+    Args:
+        countries (list): Lista com os códigos dos países
+        
+    Returns:
+        dict: Dicionário com o país e quantidade de usernames nulos
+    """
+    null_counts = {}
+    
+    for country in countries:
+        # Construir o caminho do ficheiro
+        file_path = f'{directory}/data/{country}/processed_data/Raw_musae_{country}_target.csv'
+        
+        try:
+            # Ler o ficheiro
+            df = pd.read_csv(file_path)
+            
+            # Contar usernames nulos
+            null_count = df['username'].isnull().sum()
+            
+            # Guardar no dicionário
+            null_counts[country] = null_count
+            
+            print(f"{country}: {null_count} usernames nulos")
+            
+        except FileNotFoundError:
+            print(f"Ficheiro não encontrado para {country}")
+        except Exception as e:
+            print(f"Erro ao processar {country}: {str(e)}")
+            
+    return null_counts
+
+def plot_null_usernames(countries, directory, output_dir):
+    """
+    Cria um gráfico de barras mostrando a quantidade de usernames nulos por país
+    
+    Args:
+        countries (list): Lista com os códigos dos países
+        directory (Path): Diretório base do projeto
+        output_dir (Path): Diretório para salvar as imagens
+    """
+    setup_style()
+    plt.figure(figsize=(12, 8))
+    
+    # Obter os dados
+    null_counts = count_null_usernames(countries, directory)
+    
+    # Criar o gráfico de barras
+    colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFB347', '#A47786']
+    ax = plt.bar(null_counts.keys(), null_counts.values(), color=colors, alpha=0.8)
+    
+    # Adicionar título e labels
+    plt.title('Quantidade de Usernames Nulos por País', 
+             pad=20, 
+             fontsize=16, 
+             fontweight='bold')
+    
+    plt.xlabel('País', fontsize=12, labelpad=10)
+    plt.ylabel('Quantidade de Usernames Nulos', fontsize=12, labelpad=10)
+    
+    # Adicionar grid suave
+    plt.grid(axis='y', linestyle='--', alpha=0.2)
+    
+    # Adicionar valores em cima das barras
+    for i, v in enumerate(null_counts.values()):
+        plt.text(i, v + (max(null_counts.values()) * 0.01), 
+                f'{v:,}',
+                ha='center',
+                va='bottom',
+                fontsize=12,
+                fontweight='bold',
+                color='white')
+    
+    # Rotação dos labels do eixo x
+    plt.xticks(rotation=0, fontsize=10)
+    plt.yticks(fontsize=10)
+    
+    # Remover bordas
+    sns.despine()
+    
+    # Ajustar layout
+    plt.tight_layout()
+    
+    # Guardar uma cópia da figura atual
+    fig = plt.gcf()
+    
+    # Mostrar o gráfico
+    plt.show()
+    
+    # Salvar o gráfico
+    folder = create_subfolder('NoteBook1', output_dir)
+    save_plot(fig, 'null_usernames', 'all_countries', folder, 'barplots')
 def plot_broadcaster_types_by_country(df, output_dir):
     """
     Cria um gráfico de barras empilhadas mostrando a distribuição dos tipos de broadcasters por país
@@ -1023,3 +1118,30 @@ if __name__ == "__main__":
     alpha, xmin = detect_power_law(df, 'degree')
     print(f"Expoente (α): {alpha:.2f}")
     print(f"Valor mínimo (xmin): {xmin}")
+
+    # Adicionar anotações com estatísticas
+    total_users = len(df)
+    plt.figtext(0.02, 0.02,
+                f'Total de utilizadores: {total_users:,}',
+                fontsize=12,
+                color='white',
+                bbox=dict(facecolor='black',
+                            edgecolor='white',
+                            alpha=0.7,
+                            pad=5,
+                            boxstyle='round,pad=0.5'))
+
+    # Criar pasta e salvar
+    folder = create_subfolder('NoteBook2', output_dir)
+    circular_folder = create_subfolder('CircularDistribution', folder)
+    plt.savefig(circular_folder / f'circular_distribution_{country}.png',
+                dpi=300,
+                bbox_inches='tight',
+                facecolor='black',
+                edgecolor='none')
+    
+    # Mostrar o gráfico
+    plt.show()
+    
+    # Fechar a figura
+    plt.close()
