@@ -6,6 +6,7 @@ import numpy as np
 import powerlaw
 import matplotlib.patheffects as pe
 
+
 def setup_style():
     """Configuração global do estilo dos gráficos"""
     plt.style.use('dark_background')
@@ -24,6 +25,58 @@ def create_subfolder(folder_name, output_dir):
     subfolder = output_dir / folder_name
     subfolder.mkdir(exist_ok=True)
     return subfolder
+
+non_Videojogos = ['IRL', 'Just Chatting', 'Watch TV', 'Art', 'Music',
+                    'Science & Technology', 'Software and Game Development',
+                    'Co-working & Studying', 'Crypto', 'Politics',
+                    'Talk Shows & Podcasts', 'DJs', 'Special Events',
+                    'Sports', 'Food & Drink', 'Casino', 'CooKing',
+                    'Poker', 'Virtual Casino', 'Tabletop RPGs']
+
+non_Videojogos = [Njogo.strip().lower() for Njogo in non_Videojogos]
+
+jogos_offline = ["The Callisto Protocol", "Kingdom Two Crowns", "My Hotel", "Disco Elysium",
+                    "Divinity: Original Sin II", "Grand Theft Auto: San Andreas", "osu!",
+                    "The Binding of Isaac: Repentance", "God of War Ragnarök", "BUCKSHOT ROULETTE", "Atomic Heart",
+                    "Gothic II", "Grand Theft Auto III", "Silent Hill 2", "Ghostwire: Tokyo", "DREDGE",
+                    "VLADiK BRUTAL", "Northern Journey", "The Dark Pictures Anthology: Little Hope",
+                    "Marvel's Spider-Man", "Resident Evil 4", "Crossout", "Horizon Zero Dawn Remastered", "Outlast II",
+                    "The Last of Us Part I", "Neva", "Risk of Rain 2", "ELDEN RING", "Alan Wake II",
+                    "DARK SOULS II: Scholar of the First Sin", "DARK SOULS III", "Dark Souls: Remastered", "Diablo II",
+                    "Fallout 4", "Dungeon Crusher: Soul Hunters", "Castlevania: Dawn of Sorrow", "Artifact",
+                    "I Wanna Kill the Kamilia 3", "Torchlight: Infinite", "The Guild 3", "Sid Meier's Civilization VI",
+                    "Sons of the Forest", "The Sims 4", "X4: Foundations", "Hades II",
+                    "Prince of Persia: The Lost Crown", "Bloodborne", "Angry Birds VR: Isle of Pigs",
+                    "Heroes of Might and Magic V", "Internet Cafe Simulator 2", "Wolfenstein: The New Order",
+                    "Factorio", "DOOM Eternal", "Everlasting Summer", "God Hand", "Beyond: Two Souls", "Mafia III",
+                    "Zenless Zone Zero", "Stardew Valley", "SIFU", "Dead Space 3", "Mafia II", "Fallout 2",
+                    "SnowRunner", "Hollow Knight", "The Witcher 3: Wild Hunt", "Killer Instinct", "Little Misfortune",
+                    "Magicraft", "Magicraft", "Planetbase", "Microsoft Flight Simulator 2024", "Songs of Conquest",
+                    "Stalker 2", "Amnesia: Rebirth", "Napoleon: Total War", "Gran Saga", "Pokémon Emerald Version",
+                    "Football, Tactics & Glory", "Katamari Damacy REROLL", "Lethal Company",
+                    "Vampire: The Masquerade - Bloodlines", "Red Dead Redemption", "The Walking Dead",
+                    "Detroit: Become Human", "Until Dawn", "DiRT Rally 2.0", "Portal 2", "Rise of the Tomb Raider",
+                    "Half-Life: Alyx", "Cyberpunk 2077", "Forza Horizon 5", "South Park: The Fractured But Whole",
+                    "TSIOQUE", "Need for Speed: Most Wanted", "inFAMOUS: Second Son", "Marvel's Spider-Man Remastered",
+                    "Alone in the Dark", "Lobotomy Corporation", "Mortal Kombat 1", "Tropico 6", "Dark and Darker",
+                    "Gray Zone Warfare", "The Dark Pictures Anthology: Man of Medan", "Beat Saber", "Blasphemous",
+                    "Baldur's Gate 3", "Broken Arrow", "Yakuza 0", "Dishonored", "Hogwarts Legacy",
+                    "Grand Theft Auto IV", "Need for Speed: Underground 2", "Only Up!", "Dragon Age: Origins",
+                    "Breathedge", "Lucky Tower Ultimate", "Prey", "Euro Truck Simulator 2", "Pathfinder: Kingmaker",
+                    "Empire of the Ants", "The Dark Pictures Anthology: The Devil in Me", "Tiny Bunny",
+                    "Vintage Story", "The Surfer", "Batman: The Enemy Within", "Wolfenstein II: The New Colossus",
+                    "No Man's Sky", "Cities: Skylines", "Valhall", "The Witcher 2: Assassins of Kings",
+                    "Amnesia: The Dark Descent", "Hollow Knight: Silksong", "Shadow of the Colossus",
+                    "Red Dead Redemption 2", "Mass Effect Legendary Edition", "Sekiro: Shadows Die Twice",
+                    "Journey", "The Elder Scrolls IV: Oblivion", "The Elder Scrolls III: Morrowind",
+                    "Outer Wilds", "The Elder Scrolls Online", "The Elder Scrolls V: Skyrim Special Edition",
+                    "Nier: Automata", "The Witcher: Enhanced Edition", "The Witcher 2: Assassins of Kings Enhanced Edition",
+                    "Ori and the Will of the Wisps", "The Witcher 3: Wild Hunt - Game of the Year Edition",
+                    "Control", "The Witcher 3: Wild Hunt - Blood and Wine", "The Witcher 3: Wild Hunt - Hearts of Stone",
+                    "Metro Exodus", "The Legend of Zelda: Breath of the Wild",
+                    "Dead Cells", "Subnautica", "The Elder Scrolls V: Skyrim"]
+
+jogos_offline = [jogo.strip().lower() for jogo in jogos_offline]
 
 ##### ======================== Ficheiro 0 ======================== #####
 
@@ -225,11 +278,72 @@ def save_plot(fig, name, country, output_dir, subfolder):
         folder / f"{name}_{country}.png",
         bbox_inches='tight',
         dpi=300,
-        transparent=True  # Adicionar esta linha para manter o fundo transparente
+        transparent=False,  # Alterado para False para manter o fundo preto
+        facecolor='black'  # Adicionado para garantir o fundo preto
     )
     plt.close(fig)
 
 ## ================ Ficheiro 1 ================ ##
+
+def plot_content_type_comparison(df, output_dir):
+    """
+    Cria um gráfico de barras acumulativo comparando canais de videojogos e não-videojogos por país.
+    """
+    setup_style()  # Certifica-te de que esta função está implementada corretamente.
+
+    # Preparar dados para o gráfico
+    content_counts = df.groupby('Country')[['On-Videogame Channels', 'Off-Videogame Channels', 
+                                             'Non-Videogame Channels', 'Non-Content']].sum()
+
+    # Criar figura
+    plt.figure(figsize=(14, 8))
+
+    # Posições das barras
+    x = np.arange(len(content_counts))
+
+    # Escolher uma paleta de cores agradável
+    color_palette = sns.color_palette("Set3", len(content_counts.columns))
+
+    # Criar barras empilhadas
+    bottom = np.zeros(len(content_counts))
+    for i, content_type in enumerate(content_counts.columns):
+        # Criar as barras
+        bars = plt.bar(x, content_counts[content_type], bottom=bottom, label=content_type, 
+                       color=color_palette[i], alpha=0.85, edgecolor='black', linewidth=1.2)
+        bottom += content_counts[content_type].values
+
+        # Adicionar rótulos dentro das barras, no meio
+        for j, bar in enumerate(bars):
+            # Calcular a posição do meio da barra
+            x_pos = bar.get_x() + bar.get_width() / 2
+            y_pos = bar.get_height() / 2 + bar.get_y()  # Posição vertical no meio da barra
+            plt.text(x_pos, y_pos, f'{int(bar.get_height()):,}', ha='center', va='center', 
+                     fontweight='bold', fontsize=10, color='white')
+
+    # Personalizar gráfico
+    plt.title('Distribuição de Tipos de Conteúdo por País', fontsize=18, pad=20, fontweight='bold')
+    plt.ylabel('Número de Canais', fontsize=14)
+    plt.xticks(x, content_counts.index, rotation=45, ha='right', fontsize=12)
+
+    # Adicionar legenda
+    plt.legend(title='Content Type', fontsize=12, title_fontsize=13)
+
+    # Adicionar grid
+    plt.grid(True, axis='y', alpha=0.3)
+
+    # Ajustar layout
+    plt.tight_layout()
+
+    # Guardar uma cópia da figura atual
+    fig = plt.gcf()
+
+    # Mostrar o gráfico
+    plt.show()
+
+    # Criar pasta e salvar (certifica-te que estas funções existem)
+    folder = create_subfolder('NoteBook1', output_dir)
+    save_plot(fig, 'content_type_comparison', 'all_countries', folder, 'barplots')
+
 
 def count_null_usernames(countries, directory):
     """
@@ -888,7 +1002,7 @@ def detect_power_law(data, column_name, country, output_dir):
         output_dir (Path): Diretório base para salvar as imagens
     """
     # Ajustar os dados a uma lei de potência
-    results = powerlaw.Fit(data[column_name])  # xmin define o limite inferior
+    results = powerlaw.Fit(data[column_name], xmin=1)  # xmin define o limite inferior
     alpha = results.power_law.alpha  # Expoente da lei de potência
     xmin = results.power_law.xmin  # Valor mínimo usado no ajuste
 

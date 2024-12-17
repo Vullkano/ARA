@@ -1,15 +1,16 @@
-import pandas as pd
-import networkx as nx
 from pathlib import Path
-from community import community_louvain
-import numpy as np
-import scipy.stats as stats
-from tqdm import tqdm
-import colorama
-from colorama import Fore, Style
 
-# Inicializar colorama para suporte de cores no Windows
+import colorama
+import networkx as nx
+import numpy as np
+import pandas as pd
+import scipy.stats as stats
+from colorama import Fore, Style
+from community import community_louvain
+from tqdm import tqdm
+
 colorama.init()
+
 
 def StudyAllCountries(current_dir: Path) -> None:
     countries = ["PTBR", "DE", "ENGB", "ES", "FR", "RU"]
@@ -37,17 +38,70 @@ def StudyAllCountries(current_dir: Path) -> None:
         f"({Fore.YELLOW}Tempo restante: {{remaining}}{Style.RESET_ALL})"
     )
 
+    # Lista de categorias que não são videojogos
+    non_Videojogos = ['IRL', 'Just Chatting', 'Watch TV', 'Art', 'Music',
+                      'Science & Technology', 'Software and Game Development',
+                      'Co-working & Studying', 'Crypto', 'Politics',
+                      'Talk Shows & Podcasts', 'DJs', 'Special Events',
+                      'Sports', 'Food & Drink', 'Casino', 'CooKing',
+                      'Poker', 'Virtual Casino', 'Tabletop RPGs']
+
+    non_Videojogos = [Njogo.strip().lower() for Njogo in non_Videojogos]
+
+    jogos_offline = ["The Callisto Protocol", "Kingdom Two Crowns", "My Hotel", "Disco Elysium",
+                     "Divinity: Original Sin II", "Grand Theft Auto: San Andreas", "osu!",
+                     "The Binding of Isaac: Repentance", "God of War Ragnarök", "BUCKSHOT ROULETTE", "Atomic Heart",
+                     "Gothic II", "Grand Theft Auto III", "Silent Hill 2", "Ghostwire: Tokyo", "DREDGE",
+                     "VLADiK BRUTAL", "Northern Journey", "The Dark Pictures Anthology: Little Hope",
+                     "Marvel's Spider-Man", "Resident Evil 4", "Crossout", "Horizon Zero Dawn Remastered", "Outlast II",
+                     "The Last of Us Part I", "Neva", "Risk of Rain 2", "ELDEN RING", "Alan Wake II",
+                     "DARK SOULS II: Scholar of the First Sin", "DARK SOULS III", "Dark Souls: Remastered", "Diablo II",
+                     "Fallout 4", "Dungeon Crusher: Soul Hunters", "Castlevania: Dawn of Sorrow", "Artifact",
+                     "I Wanna Kill the Kamilia 3", "Torchlight: Infinite", "The Guild 3", "Sid Meier's Civilization VI",
+                     "Sons of the Forest", "The Sims 4", "X4: Foundations", "Hades II",
+                     "Prince of Persia: The Lost Crown", "Bloodborne", "Angry Birds VR: Isle of Pigs",
+                     "Heroes of Might and Magic V", "Internet Cafe Simulator 2", "Wolfenstein: The New Order",
+                     "Factorio", "DOOM Eternal", "Everlasting Summer", "God Hand", "Beyond: Two Souls", "Mafia III",
+                     "Zenless Zone Zero", "Stardew Valley", "SIFU", "Dead Space 3", "Mafia II", "Fallout 2",
+                     "SnowRunner", "Hollow Knight", "The Witcher 3: Wild Hunt", "Killer Instinct", "Little Misfortune",
+                     "Magicraft", "Magicraft", "Planetbase", "Microsoft Flight Simulator 2024", "Songs of Conquest",
+                     "Stalker 2", "Amnesia: Rebirth", "Napoleon: Total War", "Gran Saga", "Pokémon Emerald Version",
+                     "Football, Tactics & Glory", "Katamari Damacy REROLL", "Lethal Company",
+                     "Vampire: The Masquerade - Bloodlines", "Red Dead Redemption", "The Walking Dead",
+                     "Detroit: Become Human", "Until Dawn", "DiRT Rally 2.0", "Portal 2", "Rise of the Tomb Raider",
+                     "Half-Life: Alyx", "Cyberpunk 2077", "Forza Horizon 5", "South Park: The Fractured But Whole",
+                     "TSIOQUE", "Need for Speed: Most Wanted", "inFAMOUS: Second Son", "Marvel's Spider-Man Remastered",
+                     "Alone in the Dark", "Lobotomy Corporation", "Mortal Kombat 1", "Tropico 6", "Dark and Darker",
+                     "Gray Zone Warfare", "The Dark Pictures Anthology: Man of Medan", "Beat Saber", "Blasphemous",
+                     "Baldur's Gate 3", "Broken Arrow", "Yakuza 0", "Dishonored", "Hogwarts Legacy",
+                     "Grand Theft Auto IV", "Need for Speed: Underground 2", "Only Up!", "Dragon Age: Origins",
+                     "Breathedge", "Lucky Tower Ultimate", "Prey", "Euro Truck Simulator 2", "Pathfinder: Kingmaker",
+                     "Empire of the Ants", "The Dark Pictures Anthology: The Devil in Me", "Tiny Bunny",
+                     "Vintage Story", "The Surfer", "Batman: The Enemy Within", "Wolfenstein II: The New Colossus",
+                     "No Man's Sky", "Cities: Skylines", "Valhall", "The Witcher 2: Assassins of Kings",
+                     "Amnesia: The Dark Descent", "Hollow Knight: Silksong", "Shadow of the Colossus",
+                     "Red Dead Redemption 2", "Mass Effect Legendary Edition", "Sekiro: Shadows Die Twice",
+                     "Journey", "The Elder Scrolls IV: Oblivion", "The Elder Scrolls III: Morrowind",
+                     "Outer Wilds", "The Elder Scrolls Online", "The Elder Scrolls V: Skyrim Special Edition",
+                     "Nier: Automata", "The Witcher: Enhanced Edition", "The Witcher 2: Assassins of Kings Enhanced Edition",
+                     "Ori and the Will of the Wisps", "The Witcher 3: Wild Hunt - Game of the Year Edition",
+                     "Control", "The Witcher 3: Wild Hunt - Blood and Wine", "The Witcher 3: Wild Hunt - Hearts of Stone",
+                     "Metro Exodus", "The Legend of Zelda: Breath of the Wild",
+                     "Dead Cells", "Subnautica", "The Elder Scrolls V: Skyrim"]
+
+    jogos_offline = [jogo.strip().lower() for jogo in jogos_offline]
+
     # Iterar sobre cada país com barra de progresso personalizada
-    for country in tqdm(countries, 
-                       desc=" Análise das Redes Twitch", 
-                       bar_format=bar_format,
-                       ascii="░▒▓█",  # Preenchimento gradual com diferentes densidades
-                       ncols=100):
-        
-        print(f"\n{Fore.CYAN}┌{'─'*50}┐{Style.RESET_ALL}")
+    for country in tqdm(countries,
+                        desc=" Análise das Redes Twitch",
+                        bar_format=bar_format,
+                        ascii="░▒▓█",  # Preenchimento gradual com diferentes densidades
+                        ncols=100):
+
+        print(f"\n{Fore.CYAN}┌{'─' * 50}┐{Style.RESET_ALL}")
         print(f"{Fore.CYAN}│{Style.RESET_ALL} 🔍 Analisando a região: "
               f"{Fore.YELLOW}{country:^26}{Style.RESET_ALL} {Fore.CYAN}│{Style.RESET_ALL}")
-        print(f"{Fore.CYAN}└{'─'*50}┘{Style.RESET_ALL}")
+        print(f"{Fore.CYAN}└{'─' * 50}┘{Style.RESET_ALL}")
 
         # Caminho do ficheiro CSV para o país atual (nós)
         nodes_path = current_dir / country / 'processed_data' / f"twitch_network_analysis_{country}.csv"
@@ -75,7 +129,7 @@ def StudyAllCountries(current_dir: Path) -> None:
         num_nodes = G.number_of_nodes()
         num_edges = G.number_of_edges()
         diameter = nx.diameter(G) if nx.is_connected(G) else None
-        num_components = nx.number_connected_components(G)
+        radius = nx.radius(G) if nx.is_connected(G) else None
         density = nx.density(G)
         avg_clustering_coeff = nx.average_clustering(G)
         transitivity = nx.transitivity(G)
@@ -109,7 +163,6 @@ def StudyAllCountries(current_dir: Path) -> None:
         broadcaster_counts = nodes_df['broadcaster_type'].value_counts()
         partner_count = broadcaster_counts.get('partner', 0)
         affiliate_count = broadcaster_counts.get('affiliate', 0)
-        normal_count = broadcaster_counts.get('', 0)  # broadcasters normais têm valor vazio
         account_deleted_count = broadcaster_counts.get('account_Deleted', 0)
         non_streamer_count = broadcaster_counts.get('non_Streamer', 0)
 
@@ -117,24 +170,64 @@ def StudyAllCountries(current_dir: Path) -> None:
         degree_centralization = max(degree_centrality.values()) - avg_degree_centrality
         betweenness_centralization = max(betweenness_centrality.values()) - avg_betweenness_centrality
 
-        # Reciprocidade (importante para redes sociais)
-        reciprocity = nx.reciprocity(G)
-
         # Métricas de Distribuição
         degree_values = [d for n, d in G.degree()]
         degree_std = np.std(degree_values)  # Desvio padrão dos graus
-        degree_skewness = stats.skew(degree_values)  # Assimetria da distribuição
 
         # Eficiência Global da Rede
         global_efficiency = nx.global_efficiency(G)
+
+        # Ajuste na parte onde se atribui a categoria GameType
+        def categorize_game(x: str) -> str:
+            # Verificar se o nome do jogo não é nulo e compará-lo com as listas fornecidas
+            if pd.isna(x):
+                return np.nan
+            game_name = x.strip().lower()  # Remove espaços extras e converte para minúsculas
+            if game_name in jogos_offline:
+                return 'Offline'
+            elif game_name in non_Videojogos:
+                return 'Non-Videogame'
+            else:
+                return 'Online'
+
+        # Aplicar a função de categorização aos jogos
+        nodes_df['GameType'] = nodes_df['game_name'].apply(categorize_game)
+
+        # Contagens por categoria
+        OFF_videogames_count = nodes_df[nodes_df['GameType'] == 'Offline'].shape[0]
+        non_videogames_count = nodes_df[nodes_df['GameType'] == 'Non-Videogame'].shape[0]
+        ON_videogames_count = nodes_df[nodes_df['GameType'] == 'Online'].shape[0]
+
+        # Contar os valores NaN na coluna GameType
+        nan_count = nodes_df['GameType'].isna().sum()
+
+        # Obter a maior componente conectada (componente gigante)
+        largest_component = max(nx.connected_components(G), key=len)
+        G_giant = G.subgraph(largest_component).copy()
+
+        # Número de nós e arestas da componente gigante
+        num_nodes_giant = G_giant.number_of_nodes()
+        num_edges_giant = G_giant.number_of_edges()
+
+        # Calculando a heterogeneidade dos graus
+        mean_deg = np.mean(degree_values)
+        mean_deg_squared = np.mean(np.array(degree_values) ** 2)
+        heterogeneity = mean_deg_squared / mean_deg ** 2
+
+        # Calcular o k-core
+        k_core = nx.k_core(G)
+
+        # Obter a quantidade de nós e arestas no k-core
+        num_nodos_k_core = k_core.number_of_nodes()  # Número de nós
+        num_arestas_k_core = k_core.number_of_edges()  # Número de arestas
 
         # Armazenar os resultados numa lista
         results.append({
             'Country': country,
             'Number of Nodes': num_nodes,
             'Number of Edges': num_edges,
-            'Number of Components': num_components,
             'Diameter': diameter,
+            'Radius': radius,
             'Density': density,
             'Average Clustering Coefficient': avg_clustering_coeff,
             'Transitivity': transitivity,
@@ -146,23 +239,30 @@ def StudyAllCountries(current_dir: Path) -> None:
             'Closeness Centrality (mean)': avg_closeness_centrality,
             'Eigenvector Centrality (mean)': avg_eigenvector_centrality,
             'PageRank Centrality (mean)': avg_pagerank_centrality,
-            'Number of Mature Nodes': nodes_df['mature'].sum(),
-            'Number of Partner Nodes': nodes_df['partner'].sum(),
-            'Number of Non-Mature Nodes': len(nodes_df) - nodes_df['mature'].sum(),
-            'Number of Non-Partner Nodes': len(nodes_df) - nodes_df['partner'].sum(),
             'Average Views': avg_views,
             'Views Std': std_views,
             'Total Views': total_views,
+            'Degree Centralization': degree_centralization,
+            'Betweenness Centralization': betweenness_centralization,
+            'Degree Std': degree_std,
+            'Global Efficiency': global_efficiency,
+            'Heterogeneity': heterogeneity,
+            'Giant Component Nodes': num_nodes_giant,
+            'Giant Component Edges': num_edges_giant,
+            'Number of Nodes in K-Core': num_nodos_k_core,
+            'Number of Edges in K-Core': num_arestas_k_core,
+            'On-Videogame Channels': ON_videogames_count,
+            'Off-Videogame Channels': OFF_videogames_count,
+            'Non-Videogame Channels': non_videogames_count,
+            'Non-Content': nan_count,
             'Partner Broadcasters': partner_count,
             'Affiliate Broadcasters': affiliate_count,
             'Account Deleted Broadcasters': account_deleted_count,
             'Non-Streamer Broadcasters': non_streamer_count,
-            'Degree Centralization': degree_centralization,
-            'Betweenness Centralization': betweenness_centralization,
-            'Reciprocity': reciprocity,
-            'Degree Std': degree_std,
-            'Degree Skewness': degree_skewness,
-            'Global Efficiency': global_efficiency,
+            'Number of Mature Nodes': nodes_df['mature'].sum(),
+            'Number of Partner Nodes': nodes_df['partner'].sum(),
+            'Number of Non-Mature Nodes': len(nodes_df) - nodes_df['mature'].sum(),
+            'Number of Non-Partner Nodes': len(nodes_df) - nodes_df['partner'].sum(),
         })
 
     # Criar um DataFrame com os resultados
@@ -178,4 +278,5 @@ def StudyAllCountries(current_dir: Path) -> None:
 
 if __name__ == "__main__":
     current_dir = Path.cwd()
+    print(current_dir)
     StudyAllCountries(current_dir)
